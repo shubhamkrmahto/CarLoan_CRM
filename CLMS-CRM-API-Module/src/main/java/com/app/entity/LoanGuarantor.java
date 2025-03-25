@@ -1,10 +1,14 @@
 package com.app.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 
 @Data
 @AllArgsConstructor
@@ -12,6 +16,10 @@ import lombok.ToString;
 @ToString
 @Entity
 public class LoanGuarantor {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer loanGuarantorId;
 
 	private Integer guarantorId;
 	private String guarantorName;

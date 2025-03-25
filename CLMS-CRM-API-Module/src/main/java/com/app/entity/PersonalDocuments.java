@@ -22,7 +22,7 @@ public class PersonalDocuments {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int documentId;
+	private Integer documentId;
 	
 	@Lob
 	@Column(length = 999999999)
