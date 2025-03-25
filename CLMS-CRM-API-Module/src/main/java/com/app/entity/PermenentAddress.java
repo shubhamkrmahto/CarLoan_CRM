@@ -19,4 +19,5 @@ public class PermenentAddress {
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
 	private String permenentAddrId;
 
+	
 }
