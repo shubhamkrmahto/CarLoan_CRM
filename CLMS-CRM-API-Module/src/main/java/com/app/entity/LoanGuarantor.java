@@ -25,8 +25,8 @@ public class LoanGuarantor {
 	private String guarantorName;
 	private String guarantorDateOfBirth;
 	private String guarantorRelationShipWithCustomer;
-	private long guarantorMobileNumber;
-	private long guarantorAdharCardNumber;
+	private Long guarantorMobileNumber;
+	private Long guarantorAdharCardNumber;
 	private String guarantorMorgageDetails;
 	private String guarantorJobDetails;
 	private String guarantorLocalAddress;
