@@ -1,5 +1,6 @@
 package com.app.entity;
 
+
 import java.time.LocalDateTime;
 
 import com.app.enums.CibilStatusEnum;
@@ -19,6 +20,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class MedicalInfo {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer medicalInfoId;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

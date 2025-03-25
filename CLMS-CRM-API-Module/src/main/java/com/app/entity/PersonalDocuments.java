@@ -1,5 +1,8 @@
 package com.app.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,9 +12,11 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class PersonalDocuments {
-	
-	private byte[] documentId;
+	@Id
+	@GeneratedValue
+	private Integer documentId;
 	private byte[] addressProof;
 	private byte[] panCard;
 	private byte[] incomeTax;
