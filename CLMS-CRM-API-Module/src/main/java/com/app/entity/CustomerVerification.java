@@ -20,6 +20,8 @@ public class CustomerVerification {
 	private Integer cusVerificationId;
 	@DateTimeFormat
 	private LocalDate verificationDate;
+	private String status;
+	private String remarks;
 	
 
 }

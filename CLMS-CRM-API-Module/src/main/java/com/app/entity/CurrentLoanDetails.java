@@ -17,6 +17,6 @@ import lombok.ToString;
 public class CurrentLoanDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer previousLoanId;
+	private Integer currentLoanId;
 
 }
