@@ -14,6 +14,6 @@ public class SanctionLetter {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String sanctionLetterId;
+	private Integer sanctionLetterId;
 
 }
