@@ -18,6 +18,7 @@ public class PermenentAddress {
 	@Id
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
 	private String permenentAddrId;
+
 	private String areaName;
 	private String cityName;
 	private String district;
