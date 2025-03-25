@@ -17,6 +17,6 @@ import lombok.ToString;
 public class PermenentAddress {
 	@Id
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
-	private String permenentAddrId;
+	private Integer permenentAddrId;
 
 }
