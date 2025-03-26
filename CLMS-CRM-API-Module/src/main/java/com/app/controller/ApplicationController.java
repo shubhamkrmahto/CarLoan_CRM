@@ -1,14 +1,21 @@
 package com.app.controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.app.entity.Customer;
+import com.app.entity.LoanApplication;
+import com.app.entity.PersonalDocuments;
 import com.app.service.ApplicationService;
 
 @RestController
@@ -20,12 +27,26 @@ public class ApplicationController {
 	@Autowired
 	RestTemplate rt;
 	
-	@GetMapping("/getcustomer/{id}")
-	public ResponseEntity<Customer> getCustomerInfo(@PathVariable("id") Integer id){
+	@PostMapping("/saveapplication/{id}")
+	public ResponseEntity<Customer> getCustomerInfo( @PathVariable Integer id, 
+			@RequestPart("addressProof") MultipartFile addressProof  ,
+	        @RequestPart("panCard") MultipartFile panCard ,
+	        @RequestPart("incomeTax") MultipartFile incomeTax,
+	        @RequestPart("aadharCard") MultipartFile aadharCard,
+	        @RequestPart("photo") MultipartFile photo,
+	        @RequestPart("signature") MultipartFile signature,
+	        @RequestPart("bankCheque") MultipartFile bankCheque,
+	        @RequestPart("salarySlips") MultipartFile salarySlips
+	        
+			
+			) throws IOException{
 		
 		String url ="http://localhost:7000/enquiry/getSingleEnquiry/"+id;
 		Customer customer = rt.getForObject(url, Customer.class);
+	
 		System.out.println(customer);
+		appService.saveCustomer(customer);
+		appService.savePersonalDocuments(addressProof,panCard,incomeTax,aadharCard,photo,signature,bankCheque,salarySlips);
 		return new ResponseEntity<Customer>(customer , HttpStatus.OK);
 	}
 
