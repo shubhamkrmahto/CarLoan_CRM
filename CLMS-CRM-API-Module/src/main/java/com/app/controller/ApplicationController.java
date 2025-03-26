@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.app.entity.Cibil;
 import com.app.entity.Customer;
 import com.app.service.ApplicationService;
 
@@ -27,6 +28,16 @@ public class ApplicationController {
 		Customer customer = rt.getForObject(url, Customer.class);
 		System.out.println(customer);
 		return new ResponseEntity<Customer>(customer , HttpStatus.OK);
+	}
+	
+	@GetMapping("/getCibil/{id}")
+	public ResponseEntity<Cibil> getCibilInfo(@PathVariable("id") Integer id){
+		String url ="http://localhost:9001/cibil/getCibilSingleData/"+id;
+		
+		Cibil cibil = rt.getForObject(url, Cibil.class);
+		System.out.println(cibil);
+		return new ResponseEntity<Cibil>(cibil , HttpStatus.OK);
+		
 	}
 
 }
