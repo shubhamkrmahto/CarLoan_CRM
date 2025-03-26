@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -29,7 +30,7 @@ public class ApplicationController {
 	RestTemplate rt;
 	
 	@PostMapping("/saveapplication/{id}")
-	public ResponseEntity<Customer> getCustomerInfo( @PathVariable Integer id, 
+	public ResponseEntity<String> getCustomerInfo( @PathVariable Integer id, 
 			@RequestPart("addressProof") MultipartFile addressProof  ,
 	        @RequestPart("panCard") MultipartFile panCard ,
 	        @RequestPart("incomeTax") MultipartFile incomeTax,
@@ -37,9 +38,9 @@ public class ApplicationController {
 	        @RequestPart("photo") MultipartFile photo,
 	        @RequestPart("signature") MultipartFile signature,
 	        @RequestPart("bankCheque") MultipartFile bankCheque,
-	        @RequestPart("salarySlips") MultipartFile salarySlips
+	        @RequestPart("salarySlips") MultipartFile salarySlips,
 	        
-			
+			@RequestPart("data") String data
 			) throws IOException{
 		
 		String url ="http://localhost:7000/enquiry/getSingleEnquiry/"+id;
@@ -48,7 +49,8 @@ public class ApplicationController {
 		System.out.println(customer);
 		appService.saveCustomer(customer);
 		appService.savePersonalDocuments(addressProof,panCard,incomeTax,aadharCard,photo,signature,bankCheque,salarySlips);
-		return new ResponseEntity<Customer>(customer , HttpStatus.OK);
+		appService.saveData(data);
+		return new ResponseEntity<String>("Loan Application Submitted Successfully" , HttpStatus.OK);
 	}
 	
 	@GetMapping("/getCibil/{id}")
