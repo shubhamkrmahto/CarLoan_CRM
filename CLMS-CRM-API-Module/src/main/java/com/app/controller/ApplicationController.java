@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.app.entity.Cibil;
 import com.app.entity.Customer;
 import com.app.entity.LoanApplication;
 import com.app.entity.PersonalDocuments;
@@ -48,6 +49,16 @@ public class ApplicationController {
 		appService.saveCustomer(customer);
 		appService.savePersonalDocuments(addressProof,panCard,incomeTax,aadharCard,photo,signature,bankCheque,salarySlips);
 		return new ResponseEntity<Customer>(customer , HttpStatus.OK);
+	}
+	
+	@GetMapping("/getCibil/{id}")
+	public ResponseEntity<Cibil> getCibilInfo(@PathVariable("id") Integer id){
+		String url ="http://localhost:9001/cibil/getCibilSingleData/"+id;
+		
+		Cibil cibil = rt.getForObject(url, Cibil.class);
+		System.out.println(cibil);
+		return new ResponseEntity<Cibil>(cibil , HttpStatus.OK);
+		
 	}
 
 }

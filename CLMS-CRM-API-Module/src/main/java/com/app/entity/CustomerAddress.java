@@ -21,7 +21,7 @@ public class CustomerAddress {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer addressId;
 	@OneToOne(cascade = CascadeType.ALL)
-	private PermenentAddress paddr;
+	private PermanentAddress paddr;
 	@OneToOne(cascade = CascadeType.ALL)
 	private LocalAddress laddr;
 
