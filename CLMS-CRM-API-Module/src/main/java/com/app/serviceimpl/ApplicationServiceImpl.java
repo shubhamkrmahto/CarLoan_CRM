@@ -42,27 +42,19 @@ public class ApplicationServiceImpl implements ApplicationService{
 	public String saveLoanApplication(Customer customer ,MultipartFile addressProof, MultipartFile panCard, MultipartFile incomeTax,
 			MultipartFile aadharCard, MultipartFile photo,MultipartFile signature,
 			MultipartFile bankCheque, MultipartFile salarySlips,String data) throws IOException,JsonMappingException, JsonProcessingException {
-		byte[] addr = addressProof.getBytes();
-		byte[] pan = panCard.getBytes();
-		byte[] income = incomeTax.getBytes();
-		byte[] aadhar = aadharCard.getBytes();
-		byte[] photo1 = photo.getBytes();
-		byte[] sign = signature.getBytes();
-		byte[] cheque = bankCheque.getBytes();
-		byte[] slips = salarySlips.getBytes();
 		
 		LoanApplication app = new LoanApplication();
 		app.setCustomer(customer);
 		
 		PersonalDocuments docs = new PersonalDocuments();
-		docs.setAddressProof(addr);
-		docs.setPanCard(pan);
-		docs.setIncomeTax(income);
-		docs.setAadharCard(aadhar);
-		docs.setPhoto(photo1);
-		docs.setSignature(sign);
-		docs.setBankCheque(cheque);
-		docs.setSalarySlips(slips);
+		docs.setAddressProof(addressProof.getBytes());
+		docs.setPanCard(panCard.getBytes());
+		docs.setIncomeTax(incomeTax.getBytes());
+		docs.setAadharCard(aadharCard.getBytes());
+		docs.setPhoto(photo.getBytes());
+		docs.setSignature(signature.getBytes());
+		docs.setBankCheque(bankCheque.getBytes());
+		docs.setSalarySlips(salarySlips.getBytes());
 			
 		app.setDocuments(docs);
 		
