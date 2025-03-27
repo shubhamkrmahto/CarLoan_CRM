@@ -1,5 +1,11 @@
 package com.app.service;
 
+<<<<<<< HEAD
+import java.util.Optional;
+
+import com.app.entity.PermanentAddress;
+import com.app.entity.PersonalDocuments;
+=======
 import com.app.entity.BankAccountDetails;
 import com.app.entity.Customer;
 import com.app.entity.CustomerVerification;
@@ -11,6 +17,11 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 public interface ApplicationService {
 
+
+	public String updatePersonalDocm(Integer id, PersonalDocuments pdocuments);
+
+	public String updatePermanentAddress(Integer id, PermanentAddress permanentAddress);
+	
 	public String updateBankDetails(Integer id, BankAccountDetails bad);
 	
 	public String updateCustomerVerification(Integer id, CustomerVerification cv);

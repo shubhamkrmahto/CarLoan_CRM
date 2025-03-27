@@ -1,8 +1,16 @@
 package com.app.serviceimpl;
 
+import java.time.LocalDate;
+import java.util.Optional;
+
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.app.entity.LoanApplication;
+
+import com.app.entity.PermanentAddress;
+import com.app.entity.PersonalDocuments;
 import java.io.IOException;
 import com.app.entity.BankAccountDetails;
 import com.app.entity.Customer;
@@ -31,6 +39,70 @@ public class ApplicationServiceImpl implements ApplicationService{
 	
 	@Autowired
 	ApplicationRepository appRepo;
+
+	
+	@Autowired
+	JavaMailSender sender;
+	
+	@Value("${spring.mail.username}")
+	private String from;  
+
+	
+	@Override
+	public String updatePermanentAddress(Integer id, PermanentAddress permanentAddress) {
+		
+		  Optional<LoanApplication> byId = appRepo.findById(id);
+		
+		if(byId.isPresent())
+		{
+		 LoanApplication pAddress=byId.get();
+		 
+		 pAddress.getAddress().getLaddr().setAreaName(permanentAddress.getAreaName());
+	    pAddress.getAddress().getLaddr().setCityName(permanentAddress.getCityName());
+		pAddress.getAddress().getLaddr().setDistrict(permanentAddress.getDistrict());
+		pAddress.getAddress().getLaddr().setHouseNumber(permanentAddress.getHouseNumber());
+		pAddress.getAddress().getLaddr().setPincode(permanentAddress.getPincode());	
+		pAddress.getAddress().getLaddr().setStreetName(permanentAddress.getStreetName());
+	     pAddress.getAddress().getLaddr().setState(permanentAddress.getState());
+	
+	     appRepo.save(pAddress);
+		
+		return "Permanent Address has been Updated....!";
+		}
+		return "Record is not available";
+	}
+
+
+
+
+
+	@Override
+	public String updatePersonalDocm(Integer id, PersonalDocuments pdocuments) {
+
+	
+		Optional<LoanApplication> byId = appRepo.findById(id);
+		if(byId.isPresent())
+		{
+		LoanApplication application=byId.get();
+		
+		application.getDocuments().setAadharCard(pdocuments.getAadharCard());
+		application.getDocuments().setAddressProof(pdocuments.getAddressProof());
+		application.getDocuments().setBankCheque(pdocuments.getBankCheque());
+		application.getDocuments().setIncomeTax(pdocuments.getIncomeTax());
+		application.getDocuments().setSalarySlips(pdocuments.getSalarySlips());
+		application.getDocuments().setSignature(pdocuments.getSignature());
+		application.getDocuments().setPanCard(pdocuments.getPanCard());
+         appRepo.save(application);
+		
+		
+		return "Personal Doc has been Updated....! ";
+		}
+		return "Record is not available";
+	}
+	
+	
+	
+	
 
 	@Override
 	public String updateBankDetails(Integer id, BankAccountDetails bad) {
@@ -144,13 +216,6 @@ public class ApplicationServiceImpl implements ApplicationService{
 	return "Loan Guarantor Details are not present for this Loan Application.";
 
 	}
-	
-	@Autowired
-	JavaMailSender sender;
-	
-	@Value("${spring.mail.username}")
-	private String from;  
-
 
 	@Override
 	public String saveLoanApplication(Customer customer ,MultipartFile addressProof, MultipartFile panCard, MultipartFile incomeTax,

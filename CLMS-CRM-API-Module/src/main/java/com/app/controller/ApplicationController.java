@@ -1,5 +1,6 @@
 package com.app.controller;
 
+
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -7,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -16,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.app.entity.BankAccountDetails;
 import com.app.entity.Cibil;
 import com.app.entity.Customer;
+import com.app.entity.PermanentAddress;
+import com.app.entity.PersonalDocuments;
 import com.app.entity.CustomerVerification;
 import com.app.entity.LoanGuarantor;
 import com.app.service.ApplicationService;
@@ -63,6 +67,7 @@ public class ApplicationController {
 		
 	}
 	
+	
 	@PutMapping("/updateBankDetails/{id}")
 	public ResponseEntity<String> updateBankDetails(@PathVariable("id") Integer id, @RequestBody BankAccountDetails bad)
 	{
@@ -90,4 +95,25 @@ public class ApplicationController {
 	
 	
 
+	@PutMapping("/updatePermanentAddress/{id}")
+	public ResponseEntity<String> chengeAllDataforPermanentAddress(@PathVariable("id")Integer id,
+			                                                                        @RequestBody PermanentAddress permanentAddress)
+	{
+	String address=appService.updatePermanentAddress(id,permanentAddress);
+	
+	return new ResponseEntity<String>(address,HttpStatus.OK);
+  }
+	
+	
+	@PutMapping("/updatePersonalDocument/{id}")
+	public ResponseEntity<String> updatePersonalDoc(@PathVariable("id")Integer id,
+			                          @RequestBody PersonalDocuments pdocuments)
+	{
+		String personalDocuments=appService.updatePersonalDocm(id,pdocuments);
+		return new ResponseEntity<String>(personalDocuments,HttpStatus.OK);
+	}
+	
+	
+	
+	
 }
