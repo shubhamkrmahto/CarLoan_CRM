@@ -8,8 +8,8 @@ import com.app.entity.PersonalDocuments;
 public interface ApplicationService {
 
 
-	public PersonalDocuments updatePersonalDocm(Integer id, PersonalDocuments pdocuments);
+	public String updatePersonalDocm(Integer id, PersonalDocuments pdocuments);
 
-	public PermanentAddress updatePermanentAddress(Integer id, PermanentAddress permanentAddress);
+	public String updatePermanentAddress(Integer id, PermanentAddress permanentAddress);
 
 }

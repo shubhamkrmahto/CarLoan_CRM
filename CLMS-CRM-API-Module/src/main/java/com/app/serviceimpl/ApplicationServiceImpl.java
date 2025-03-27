@@ -23,7 +23,7 @@ public class ApplicationServiceImpl implements ApplicationService{
 
 	
 	@Override
-	public PermanentAddress updatePermanentAddress(Integer id, PermanentAddress permanentAddress) {
+	public String updatePermanentAddress(Integer id, PermanentAddress permanentAddress) {
 		
 		  Optional<LoanApplication> byId = appRepo.findById(id);
 		
@@ -41,9 +41,9 @@ public class ApplicationServiceImpl implements ApplicationService{
 	
 	     appRepo.save(pAddress);
 		
-		return null;
+		return "Permanent Address has been Updated....!";
 		}
-		return null;
+		return "Record is not available";
 	}
 
 
@@ -51,7 +51,7 @@ public class ApplicationServiceImpl implements ApplicationService{
 
 
 	@Override
-	public PersonalDocuments updatePersonalDocm(Integer id, PersonalDocuments pdocuments) {
+	public String updatePersonalDocm(Integer id, PersonalDocuments pdocuments) {
 
 	
 		Optional<LoanApplication> byId = appRepo.findById(id);
@@ -69,9 +69,9 @@ public class ApplicationServiceImpl implements ApplicationService{
          appRepo.save(application);
 		
 		
-		return null;
+		return "Personal Doc has been Updated....! ";
 		}
-		return null;
+		return "Record is not available";
 	}
 	
 	

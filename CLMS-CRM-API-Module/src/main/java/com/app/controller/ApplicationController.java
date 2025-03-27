@@ -49,24 +49,24 @@ public class ApplicationController {
 	
 	
 	
-	@PutMapping("updatePermanentAddress/{id}")
-	public ResponseEntity<PermanentAddress> chengeAllDataforPermanentAddress(@PathVariable("id")Integer id,
+	@PutMapping("/updatePermanentAddress/{id}")
+	public ResponseEntity<String> chengeAllDataforPermanentAddress(@PathVariable("id")Integer id,
 			                                                                        @RequestBody PermanentAddress permanentAddress)
 	{ 
 
 	
-	PermanentAddress address=appService.updatePermanetAddress(id,permanentAddress);
+	String address=appService.updatePermanentAddress(id,permanentAddress);
 	
-	return new ResponseEntity<PermanentAddress>(address,HttpStatus.OK);
+	return new ResponseEntity<String>(address,HttpStatus.OK);
   }
 	
 	
-	@PutMapping("updatePersonalDocument/{id}")
-	public ResponseEntity<PersonalDocuments> updatePersonalDoc(@PathVariable("id")Integer id,
+	@PutMapping("/updatePersonalDocument/{id}")
+	public ResponseEntity<String> updatePersonalDoc(@PathVariable("id")Integer id,
 			                          @RequestBody PersonalDocuments pdocuments)
 	{
-		PersonalDocuments personalDocuments=appService.updatePersonalDocm(id,pdocuments);
-		return new ResponseEntity<PersonalDocuments>(personalDocuments,HttpStatus.OK);
+		String personalDocuments=appService.updatePersonalDocm(id,pdocuments);
+		return new ResponseEntity<String>(personalDocuments,HttpStatus.OK);
 	}
 	
 	
