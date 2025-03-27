@@ -10,11 +10,10 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 public interface ApplicationService {
 
-	void saveCustomer(Customer customer);
 
-	void savePersonalDocuments(MultipartFile addressProof, MultipartFile panCard, MultipartFile incomeTax,
-			MultipartFile aadharCard, MultipartFile photo,MultipartFile signature, MultipartFile bankCheque, MultipartFile salarySlips) throws IOException;
+	String saveLoanApplication(Customer customer,MultipartFile addressProof, MultipartFile panCard, MultipartFile incomeTax,
+			MultipartFile aadharCard, MultipartFile photo,MultipartFile signature,
+			MultipartFile bankCheque, MultipartFile salarySlips,String data) throws IOException,JsonMappingException, JsonProcessingException;
 
-	void saveData(String data) throws JsonMappingException, JsonProcessingException;
 
 }

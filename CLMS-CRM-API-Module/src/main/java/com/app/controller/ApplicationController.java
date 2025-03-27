@@ -47,10 +47,10 @@ public class ApplicationController {
 		Customer customer = rt.getForObject(url, Customer.class);
 	
 		System.out.println(customer);
-		appService.saveCustomer(customer);
-		appService.savePersonalDocuments(addressProof,panCard,incomeTax,aadharCard,photo,signature,bankCheque,salarySlips);
-		appService.saveData(data);
-		return new ResponseEntity<String>("Loan Application Submitted Successfully" , HttpStatus.OK);
+		
+		String msg = appService.saveLoanApplication(customer,addressProof,panCard,incomeTax,aadharCard,
+				                        photo,signature,bankCheque,salarySlips,data);
+		return new ResponseEntity<String>(msg , HttpStatus.OK);
 	}
 	
 	@GetMapping("/getCibil/{id}")

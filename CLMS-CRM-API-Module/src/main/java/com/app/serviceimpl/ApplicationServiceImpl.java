@@ -3,6 +3,9 @@ package com.app.serviceimpl;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,18 +30,18 @@ public class ApplicationServiceImpl implements ApplicationService{
 	
 	@Autowired
 	ApplicationRepository appRepo;
+	
+	@Autowired
+	JavaMailSender sender;
+	
+	@Value("${spring.mail.username}")
+	private String from;  
+
 
 	@Override
-	public void saveCustomer(Customer customer) {
-		LoanApplication app = new LoanApplication();
-		app.setCustomer(customer);
-		appRepo.save(app);
-		
-	}
-
-	@Override
-	public void savePersonalDocuments(MultipartFile addressProof, MultipartFile panCard, MultipartFile incomeTax,
-			MultipartFile aadharCard, MultipartFile photo,MultipartFile signature, MultipartFile bankCheque, MultipartFile salarySlips) throws IOException {
+	public String saveLoanApplication(Customer customer ,MultipartFile addressProof, MultipartFile panCard, MultipartFile incomeTax,
+			MultipartFile aadharCard, MultipartFile photo,MultipartFile signature,
+			MultipartFile bankCheque, MultipartFile salarySlips,String data) throws IOException,JsonMappingException, JsonProcessingException {
 		byte[] addr = addressProof.getBytes();
 		byte[] pan = panCard.getBytes();
 		byte[] income = incomeTax.getBytes();
@@ -47,6 +50,9 @@ public class ApplicationServiceImpl implements ApplicationService{
 		byte[] sign = signature.getBytes();
 		byte[] cheque = bankCheque.getBytes();
 		byte[] slips = salarySlips.getBytes();
+		
+		LoanApplication app = new LoanApplication();
+		app.setCustomer(customer);
 		
 		PersonalDocuments docs = new PersonalDocuments();
 		docs.setAddressProof(addr);
@@ -57,19 +63,10 @@ public class ApplicationServiceImpl implements ApplicationService{
 		docs.setSignature(sign);
 		docs.setBankCheque(cheque);
 		docs.setSalarySlips(slips);
-		
-		LoanApplication app = new LoanApplication();
+			
 		app.setDocuments(docs);
 		
-		appRepo.save(app);
-		
-	}
-
-	@Override
-	public void saveData(String data) throws JsonMappingException, JsonProcessingException {
-		
 		ObjectMapper mapper = new ObjectMapper();
-		LoanApplication app = new LoanApplication();
 		LoanApplication value = mapper.readValue(data,LoanApplication.class);
 		
 		DependentInfo dependent = new DependentInfo();
@@ -141,8 +138,19 @@ public class ApplicationServiceImpl implements ApplicationService{
 		
 		app.setBankDetails(bankDetails);
 		
-        appRepo.save(app)	;	
+		SimpleMailMessage mail = new SimpleMailMessage();
+		mail.setFrom(from);
+		mail.setTo(customer.getCustomerEmailId());
+		mail.setSubject("Loan Application");
+        mail.setText("Dear Customer, Your Car loan Application has been submitted successfully.");
+		
+        appRepo.save(app);
+        
+        sender.send(mail);
+        
+		return "Loan Application Submitted successfully";
 	}
+
 	
 	
 
