@@ -17,34 +17,50 @@ public class LoanApplication {
 	@Id
 	@GeneratedValue
 	 private Integer applicationId;
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	 private Customer customer;
+	
 	 private Double loanAmount;
+	 
 	 private String loanStatus;
+	 
 	 @OneToOne(cascade = CascadeType.ALL)
 	 private PersonalDocuments documents;
+	 
 	 @OneToOne(cascade = CascadeType.ALL)
 	 private DependentInfo dependent;
+	 
 	 @OneToOne(cascade = CascadeType.ALL)
 	 private CustomerAddress address;
+	 
 	 @OneToOne(cascade = CascadeType.ALL)
 	 private MedicalInfo medicalInfo;
+	 
 	 @OneToOne(cascade = CascadeType.ALL)
 	 private Cibil cibil;
+	 
 	 @OneToOne(cascade = CascadeType.ALL)
 	 private CurrentLoanDetails currentLoanDetails;
+	 
 	 @OneToOne(cascade = CascadeType.ALL)
 	 private PreviousLoanDetails previousLoanDetails;
+	 
 	 @OneToOne(cascade = CascadeType.ALL)
 	 private BankAccountDetails bankDetails;
+	 
 	 @OneToOne(cascade = CascadeType.ALL)
 	 private LoanGuarantor loanGuarantor;
+	 
 	 @OneToOne(cascade = CascadeType.ALL)
 	 private LoanDisbursement loanDisbursement;
+	 
 	 @OneToOne(cascade = CascadeType.ALL)
 	 private Ledger ledger;
+	 
 	 @OneToOne(cascade = CascadeType.ALL)
 	 private SanctionLetter sanctionLetter;
+	 
 	 @OneToOne(cascade = CascadeType.ALL)
 	 private CustomerVerification verification;
 	 
