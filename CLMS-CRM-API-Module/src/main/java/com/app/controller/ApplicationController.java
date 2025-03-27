@@ -28,6 +28,7 @@ public class ApplicationController {
 	@GetMapping("/getcustomer/{id}")
 	public ResponseEntity<Customer> getCustomerInfo(@PathVariable("id") Integer id){
 		
+		
 		String url ="http://localhost:7000/enquiry/getSingleEnquiry/"+id;
 		Customer customer = rt.getForObject(url, Customer.class);
 		System.out.println(customer);
@@ -36,8 +37,9 @@ public class ApplicationController {
 	
 	@GetMapping("/getCibil/{id}")
 	public ResponseEntity<Cibil> getCibilInfo(@PathVariable("id") Integer id){
-		String url ="http://localhost:9001/cibil/getCibilSingleData/"+id;
 		
+		
+		String url ="http://localhost:9001/cibil/getCibilSingleData/"+id;
 		Cibil cibil = rt.getForObject(url, Cibil.class);
 		System.out.println(cibil);
 		return new ResponseEntity<Cibil>(cibil , HttpStatus.OK);
@@ -57,17 +59,8 @@ public class ApplicationController {
 	public ResponseEntity<String> updateMedicalInfoDocs(@PathVariable("id")Integer id,
 			                          @RequestBody MedicalInfo medicalInfor)
 	{
+		
 		String medicalI=appService.updateMedicalInfoDocs(id,medicalInfor);
 		return new ResponseEntity<String>(medicalI,HttpStatus.OK);
 	}
-
-	
-	
-	
-	
-
-
-	
-	
-
 }

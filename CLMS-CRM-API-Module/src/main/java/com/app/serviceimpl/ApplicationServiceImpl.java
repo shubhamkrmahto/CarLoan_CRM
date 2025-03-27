@@ -1,9 +1,9 @@
 package com.app.serviceimpl;
 import java.util.Optional;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.app.entity.LoanApplication;
 import com.app.entity.LocalAddress;
 import com.app.entity.MedicalInfo;
@@ -13,12 +13,18 @@ import com.app.service.ApplicationService;
 @Service
 public class ApplicationServiceImpl implements ApplicationService{
 	
+
+	private static final Logger log = LoggerFactory.getLogger(ApplicationServiceImpl.class); 
+	
 	@Autowired
 	ApplicationRepository appRepo;
 
 	@Override
 	public String updateLocalAddress(LocalAddress local, Integer id) {
 
+		
+		
+		
 		Optional<LoanApplication> byId = appRepo.findById(id);
 		LoanApplication loanApplication = byId.get();
 	
@@ -34,7 +40,7 @@ public class ApplicationServiceImpl implements ApplicationService{
 		loanApplication.getAddress().getLaddr().setStreetName(local.getStreetName());
 		
 		appRepo.save(loanApplication);
-		
+		log.info("Local Address is Updated...");
 		return "Data Updated Successfully";
 	}		
 		return "Address not present for this id";
@@ -54,6 +60,8 @@ public class ApplicationServiceImpl implements ApplicationService{
 			loanApplication.getMedicalInfo().setTreatment(medicalInfor.getTreatment());
 			 
 			appRepo.save(loanApplication);
+			
+			log.info("Medical Information is Updated...");
 			return "Data updated Successfully";
 			}
 		
