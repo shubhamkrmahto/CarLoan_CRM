@@ -14,7 +14,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @AllArgsConstructor
-public class PermenentAddress {
+public class PermanentAddress {
 	@Id
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
 	private Integer permenentAddrId;
