@@ -1,11 +1,8 @@
 package com.app.service;
 
-<<<<<<< HEAD
 import java.util.Optional;
-
 import com.app.entity.PermanentAddress;
 import com.app.entity.PersonalDocuments;
-=======
 import com.app.entity.BankAccountDetails;
 import com.app.entity.Customer;
 import com.app.entity.CustomerVerification;

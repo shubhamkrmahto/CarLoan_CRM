@@ -23,6 +23,8 @@ import com.app.entity.PersonalDocuments;
 import com.app.entity.CustomerVerification;
 import com.app.entity.LoanGuarantor;
 import com.app.service.ApplicationService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 @RestController
 public class ApplicationController {
@@ -45,16 +47,31 @@ public class ApplicationController {
 	        @RequestPart("salarySlips") MultipartFile salarySlips,
 	        
 			@RequestPart("data") String data
-			) throws IOException{
+			){
 		
 		String url ="http://localhost:7000/enquiry/getSingleEnquiry/"+id;
 		Customer customer = rt.getForObject(url, Customer.class);
 	
 		System.out.println(customer);
 		
-		String msg = appService.saveLoanApplication(customer,addressProof,panCard,incomeTax,aadharCard,
-				                        photo,signature,bankCheque,salarySlips,data);
-		return new ResponseEntity<String>(msg , HttpStatus.OK);
+		
+		try {
+			String msg = appService.saveLoanApplication(customer,addressProof,panCard,incomeTax,aadharCard,
+					                        photo,signature,bankCheque,salarySlips,data);
+			
+			return new ResponseEntity<String>(msg , HttpStatus.OK);
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<String>( HttpStatus.BAD_GATEWAY);
 	}
 	
 	@GetMapping("/getCibil/{id}")
