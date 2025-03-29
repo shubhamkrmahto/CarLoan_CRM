@@ -7,8 +7,10 @@ import com.app.entity.PermanentAddress;
 import com.app.entity.PersonalDocuments;
 =======
 import com.app.entity.BankAccountDetails;
+import com.app.entity.Cibil;
 import com.app.entity.Customer;
 import com.app.entity.CustomerVerification;
+import com.app.entity.LoanApplication;
 import com.app.entity.LoanGuarantor;
 import java.io.IOException;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,8 +32,10 @@ public interface ApplicationService {
 
 	public String updateGuarantorDetails(Integer id, LoanGuarantor lg);
 
-	public String saveLoanApplication(Customer customer,MultipartFile addressProof, MultipartFile panCard, MultipartFile incomeTax,
+	public String saveLoanApplication(Customer customer,Cibil cibil, MultipartFile addressProof, MultipartFile panCard, MultipartFile incomeTax,
 			MultipartFile aadharCard, MultipartFile photo,MultipartFile signature,
-			MultipartFile bankCheque, MultipartFile salarySlips,String data) throws IOException,JsonMappingException, JsonProcessingException;
+			MultipartFile bankCheque, MultipartFile salarySlips,String data);
+	
+	public LoanApplication getById(Integer id);
 
 }

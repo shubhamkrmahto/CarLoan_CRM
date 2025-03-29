@@ -21,8 +21,11 @@ import com.app.entity.Customer;
 import com.app.entity.PermanentAddress;
 import com.app.entity.PersonalDocuments;
 import com.app.entity.CustomerVerification;
+import com.app.entity.LoanApplication;
 import com.app.entity.LoanGuarantor;
 import com.app.service.ApplicationService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 @RestController
 public class ApplicationController {
@@ -45,26 +48,33 @@ public class ApplicationController {
 	        @RequestPart("salarySlips") MultipartFile salarySlips,
 	        
 			@RequestPart("data") String data
-			) throws IOException{
+			){
 		
 		String url ="http://localhost:7000/enquiry/getSingleEnquiry/"+id;
 		Customer customer = rt.getForObject(url, Customer.class);
 	
 		System.out.println(customer);
 		
-		String msg = appService.saveLoanApplication(customer,addressProof,panCard,incomeTax,aadharCard,
-				                        photo,signature,bankCheque,salarySlips,data);
-		return new ResponseEntity<String>(msg , HttpStatus.OK);
+		String url1 ="http://localhost:9001/cibil/getCibilSingleData/"+id;
+		Cibil cibil = rt.getForObject(url1, Cibil.class);
+		
+		System.out.println(cibil);
+		
+		
+		
+			String msg = appService.saveLoanApplication(customer,cibil,addressProof,panCard,incomeTax,aadharCard,
+					                        photo,signature,bankCheque,salarySlips,data);
+			
+			return new ResponseEntity<String>(msg , HttpStatus.OK);
+			
+		
 	}
 	
-	@GetMapping("/getCibil/{id}")
-	public ResponseEntity<Cibil> getCibilInfo(@PathVariable("id") Integer id){
-		String url ="http://localhost:9001/cibil/getCibilSingleData/"+id;
+	@GetMapping("/getLoanApplicationDetailById/{id}")
+	public ResponseEntity<LoanApplication> getById(@PathVariable("id") Integer id)
+	{
 		
-		Cibil cibil = rt.getForObject(url, Cibil.class);
-		System.out.println(cibil);
-		return new ResponseEntity<Cibil>(cibil , HttpStatus.OK);
-		
+		return new ResponseEntity<LoanApplication>(appService.getById(id), HttpStatus.OK);
 	}
 	
 	

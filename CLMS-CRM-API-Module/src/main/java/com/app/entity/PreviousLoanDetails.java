@@ -28,7 +28,7 @@ public class PreviousLoanDetails {
 	private Long contact;
 	private String bankAddress;
 	private String email;
-	private String Status;
+	private String status;
 	
 	
 
