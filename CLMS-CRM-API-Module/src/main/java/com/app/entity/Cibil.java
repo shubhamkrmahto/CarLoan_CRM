@@ -1,8 +1,8 @@
 package com.app.entity;
 
-import java.time.LocalDateTime;
+//import java.time.LocalDateTime;
 
-import org.springframework.format.annotation.DateTimeFormat;
+//import org.springframework.format.annotation.DateTimeFormat;
 
 import com.app.enums.CibilStatusEnum;
 
@@ -28,11 +28,8 @@ public class Cibil {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer cibilId;
 	private Integer cibilScore;
-	@DateTimeFormat
-	private LocalDateTime cibilScoreDateTime;
 	@Enumerated(EnumType.STRING)
-	private CibilStatusEnum status;
-	private String cibilRemark;
+	private CibilStatusEnum cibilStatus;
 
 
 

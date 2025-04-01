@@ -5,13 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.app.entity.LoanApplication;
 import com.app.entity.PersonalDocuments;
+import com.app.repository.ApplicationRepository;
 import com.app.entity.Cibil;
 import com.app.entity.Customer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.multipart.MultipartFile;
-import com.app.repo.ApplicationRepository;
+
 import com.app.service.ApplicationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -70,13 +71,13 @@ public class ApplicationServiceImpl implements ApplicationService{
 			value.setCustomer(cc);
 			
 			
-			Cibil cb = new Cibil();
-			cb.setCibilRemark(cibil.getCibilRemark());
-			cb.setCibilScore(cibil.getCibilScore());
-			cb.setCibilScoreDateTime(cibil.getCibilScoreDateTime());
-			cb.setStatus(cibil.getStatus());
+//			Cibil cb = new Cibil();
+//			cb.setCibilRemark(cibil.getCibilRemark());
+//			cb.setCibilScore(cibil.getCibilScore());
+//			cb.setCibilScoreDateTime(cibil.getCibilScoreDateTime());
+//			cb.setStatus(cibil.getStatus());
 			
-			value.setCibil(cb);
+//			value.setCibil(cb);
 			
 			PersonalDocuments docs = new PersonalDocuments();
 			
