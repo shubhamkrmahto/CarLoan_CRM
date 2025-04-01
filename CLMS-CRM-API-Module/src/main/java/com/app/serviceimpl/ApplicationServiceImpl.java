@@ -166,7 +166,7 @@ public class ApplicationServiceImpl implements ApplicationService{
 		byte[] slips = salarySlips.getBytes();
 		
 		LoanApplication app = new LoanApplication();
-		app.setCustomer(customer);
+		
 		
 		PersonalDocuments docs = new PersonalDocuments();
 		docs.setAddressProof(addr);
@@ -182,6 +182,7 @@ public class ApplicationServiceImpl implements ApplicationService{
 		
 		ObjectMapper mapper = new ObjectMapper();
 		LoanApplication value = mapper.readValue(data,LoanApplication.class);
+		app.setCustomer(customer);
 		
 		DependentInfo dependent = new DependentInfo();
 		
