@@ -5,17 +5,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.app.entity.LoanApplication;
 import com.app.entity.PersonalDocuments;
-import java.io.IOException;
+import com.app.repository.ApplicationRepository;
 import com.app.entity.Cibil;
 import com.app.entity.Customer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.multipart.MultipartFile;
-import com.app.repo.ApplicationRepository;
+
 import com.app.service.ApplicationService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
@@ -35,8 +33,8 @@ public class ApplicationServiceImpl implements ApplicationService{
 	
 	@Override
 	public String saveLoanApplication(Customer customer ,Cibil cibil,MultipartFile addressProof, MultipartFile panCard, MultipartFile incomeTax,
-			MultipartFile aadharCard, MultipartFile photo,MultipartFile signature,
-			MultipartFile bankCheque, MultipartFile salarySlips,String data){
+			MultipartFile aadharCard, MultipartFile photo,MultipartFile signature,MultipartFile bankCheque, MultipartFile salarySlips,String data){
+				
 
 		try {		
 			
@@ -72,13 +70,14 @@ public class ApplicationServiceImpl implements ApplicationService{
 			
 			value.setCustomer(cc);
 			
-			Cibil cb = new Cibil();
-			cb.setCibilRemark(cibil.getCibilRemark());
-			cb.setCibilScore(cibil.getCibilScore());
-			cb.setCibilScoreDateTime(cibil.getCibilScoreDateTime());
-			cb.setStatus(cibil.getStatus());
 			
-			value.setCibil(cb);
+//			Cibil cb = new Cibil();
+//			cb.setCibilRemark(cibil.getCibilRemark());
+//			cb.setCibilScore(cibil.getCibilScore());
+//			cb.setCibilScoreDateTime(cibil.getCibilScoreDateTime());
+//			cb.setStatus(cibil.getStatus());
+			
+//			value.setCibil(cb);
 			
 			PersonalDocuments docs = new PersonalDocuments();
 			
@@ -179,20 +178,14 @@ public class ApplicationServiceImpl implements ApplicationService{
 	        
 			return "Loan Application Submitted successfully";
 			
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return "Please Enter the details Correctly";
 		}
 		
-		return "Please Enter the details Correctly";
-		
 	}
+	
+	
 
 	public LoanApplication getById(Integer id)
 	{

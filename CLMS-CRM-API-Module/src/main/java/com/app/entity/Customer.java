@@ -1,5 +1,6 @@
 package com.app.entity;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 import org.hibernate.annotations.CreationTimestamp;
