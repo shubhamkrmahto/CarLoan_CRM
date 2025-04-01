@@ -3,15 +3,15 @@ package com.app.serviceimpl;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.app.entity.LoanApplication;
+import com.app.entity.PersonalDocuments;
 import java.io.IOException;
 import com.app.entity.Cibil;
 import com.app.entity.Customer;
-import com.app.entity.LoanApplication;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.multipart.MultipartFile;
-import com.app.entity.PersonalDocuments;
 import com.app.repo.ApplicationRepository;
 import com.app.service.ApplicationService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -32,7 +32,7 @@ public class ApplicationServiceImpl implements ApplicationService{
 	@Value("${spring.mail.username}")
 	private String from;  
 
-
+	
 	@Override
 	public String saveLoanApplication(Customer customer ,Cibil cibil,MultipartFile addressProof, MultipartFile panCard, MultipartFile incomeTax,
 			MultipartFile aadharCard, MultipartFile photo,MultipartFile signature,
