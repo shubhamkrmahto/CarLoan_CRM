@@ -72,32 +72,5 @@ public class ApplicationController {
 		
 		return new ResponseEntity<LoanApplication>(appService.getById(id), HttpStatus.OK);
 	}
-	
-	@PutMapping("/updateBankDetails/{id}")
-	public ResponseEntity<String> updateBankDetails(@PathVariable("id") Integer id, @RequestBody BankAccountDetails bad)
-	{
-		
-		String msg = appService.updateBankDetails(id,bad);
-		return new ResponseEntity<String>(msg, HttpStatus.OK);
-	}
-	
-	@PutMapping("/updateCustVerification/{id}")
-	public ResponseEntity<String> updateCustomerVerification(@PathVariable("id") Integer id, @RequestBody CustomerVerification cv)
-	{
-		
-		String msg = appService.updateCustomerVerification(id,cv);
-		return new ResponseEntity<String>(msg, HttpStatus.OK);
-	}
-	
-	@PutMapping("/updateLoanGuarantor/{id}")
-	public ResponseEntity<String> updateLoanGuarantor(@PathVariable("id") Integer id, @RequestBody LoanGuarantor lg)
-	{
-		
-		String msg = appService.updateGuarantorDetails(id,lg);
-		return new ResponseEntity<String>(msg, HttpStatus.OK);
-	}
-	
-	
-	
 
 }

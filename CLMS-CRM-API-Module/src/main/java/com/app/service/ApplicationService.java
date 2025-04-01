@@ -1,25 +1,12 @@
 package com.app.service;
 
-import com.app.entity.BankAccountDetails;
 import com.app.entity.Cibil;
 import com.app.entity.Customer;
-import com.app.entity.CustomerVerification;
 import com.app.entity.LoanApplication;
-import com.app.entity.LoanGuarantor;
-import java.io.IOException;
 import org.springframework.web.multipart.MultipartFile;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 
 public interface ApplicationService {
 
-	public String updateBankDetails(Integer id, BankAccountDetails bad);
-	
-	public String updateCustomerVerification(Integer id, CustomerVerification cv);
-	
-	public String updateCustomerDetails(Integer id, Customer c);
-
-	public String updateGuarantorDetails(Integer id, LoanGuarantor lg);
 
 	public String saveLoanApplication(Customer customer,Cibil cibil, MultipartFile addressProof, MultipartFile panCard, MultipartFile incomeTax,
 			MultipartFile aadharCard, MultipartFile photo,MultipartFile signature,
