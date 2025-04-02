@@ -25,13 +25,14 @@ public class Customer {
 	private Integer age;
 	private String gender;
 	private String state;
-	
 	private Long customerContactNumber;
 	private Long customerAlternateNumber;
 	private String customerEmailId;
 	private String customerPermanentAddress;
 	private String customerCity;
 	private Integer customerPincode;
+	private Long aadharNo;
+	private Long  panCardNo;
 	
 	@CreationTimestamp
 	private LocalDate enquiryDateTime;

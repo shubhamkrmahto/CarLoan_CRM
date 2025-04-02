@@ -24,3 +24,10 @@ public class DependentInfo {
 	
 
 }
+//dependent :{
+//noOfFamilyMembers:4,
+//noOfChild:2,
+//maritalStatus:"married",
+//dependentMember:"person",
+//familyIncome:50000
+//}
