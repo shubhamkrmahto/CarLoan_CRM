@@ -64,4 +64,11 @@ public class ApplicationController {
 		return new ResponseEntity<LoanApplication>(appService.getById(id), HttpStatus.OK);
 	}
 	
+	@GetMapping("/getLoanamount/{id}")
+	public ResponseEntity<Double> getLoanAmount(@PathVariable("id") Integer id)
+	{
+		
+		return new ResponseEntity<Double>(appService.getLoanAmount(id), HttpStatus.OK);
+	}
+	
 }

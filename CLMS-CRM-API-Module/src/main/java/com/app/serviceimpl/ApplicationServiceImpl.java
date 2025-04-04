@@ -195,6 +195,17 @@ public class ApplicationServiceImpl implements ApplicationService{
 		
 		return loanApplication;
 	}
+
+
+
+	@Override
+	public Double getLoanAmount(Integer id) {
+		// TODO Auto-generated method stub
+		
+		LoanApplication la = getById(id);
+		
+		return la.getLoanAmount();
+	}
 	
 
 }

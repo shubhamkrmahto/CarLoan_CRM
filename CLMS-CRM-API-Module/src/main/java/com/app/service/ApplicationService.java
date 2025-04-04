@@ -13,5 +13,6 @@ public interface ApplicationService {
 			MultipartFile bankCheque, MultipartFile salarySlips,String data);
 	
 	public LoanApplication getById(Integer id);
-
+	
+	public Double getLoanAmount(Integer id);
 }
