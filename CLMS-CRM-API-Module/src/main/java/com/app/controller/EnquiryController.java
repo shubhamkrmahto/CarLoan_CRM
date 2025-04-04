@@ -16,7 +16,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.app.entity.Cibil;
 import com.app.entity.LoanEnquiry;
+import com.app.enums.EnquiryStatusEnum;
 import com.app.service.EnquiryService;
 
 @RestController
@@ -24,6 +28,8 @@ import com.app.service.EnquiryService;
 public class EnquiryController {
 	
 	private static final Logger log= LoggerFactory.getLogger(EnquiryController.class); 
+	
+	@Autowired RestTemplate rt;
 	
 	@Autowired
 	private EnquiryService enquiryService;	
@@ -208,6 +214,24 @@ public class EnquiryController {
 		enquiryService.deleteEnquiryField(id);
 		return new ResponseEntity<String>("Delete Your Enquiry Field Successfully...!",HttpStatus.OK);
 
+	}
+	
+	// CIBIL METHODS BELOW THIS COMMENT
+	
+	@PatchMapping("updateStatus/{enqid}")
+	public ResponseEntity<String> updateStatus(@PathVariable("enqid") Integer eid)
+	{
+		
+		String urlToUpdate = "http://localhost:8989/UpdateCibil";
+		
+		Integer genOECibil = rt.getForObject(urlToUpdate, Integer.class);
+		
+		System.out.println(genOECibil);
+		
+		EnquiryStatusEnum status = enquiryService.updateCibilScore(eid, genOECibil);
+		
+		return new ResponseEntity<String>("Cibil has been updated to"+status, HttpStatus.ACCEPTED);
+		
 	}
 	
 
