@@ -1,16 +1,21 @@
-package com.app.serviceimpl;
+ package com.app.serviceimpl;
 
 
 import java.time.LocalDate;
+
 import java.util.List;
 import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.actuate.autoconfigure.wavefront.WavefrontProperties.Sender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+
+import com.app.entity.Cibil;
 import com.app.entity.LoanEnquiry;
 import com.app.enums.CibilStatusEnum;
 import com.app.enums.EnquiryStatusEnum;
@@ -294,25 +299,39 @@ public class EnquiryServiceImpl implements EnquiryService{
 
 	@Override
 	public EnquiryStatusEnum updateCibilScore(Integer enqId, Integer cs) {
-		// TODO Auto-generated method stub
-		
-		 LoanEnquiry le = getSingleEnquiry(enqId);
-		
-		le.getCibil().setCibilScore(cs);
-		
-		if(cs>650) {
-			le.getCibil().setCibilStatus(CibilStatusEnum.GOOD);
-			le.setEnquiryStatus(EnquiryStatusEnum.APPROVED_FOR_LOAN_APPLICATION);
-			
-		}
-		else {
-			le.getCibil().setCibilStatus(CibilStatusEnum.POOR);
-			le.setEnquiryStatus(EnquiryStatusEnum.REJECTED);
-		}
-		
-		enquiryRepository.save(le);
-		
-		return le.getEnquiryStatus();
-	}
+ 		// TODO Auto-generated method stub
+ 		
+ 		 LoanEnquiry le = getSingleEnquiry(enqId);
+ 		
+ 		le.getCibil().setCibilScore(cs);
+ 		
+ 		if(cs>650) {
+ 			le.getCibil().setCibilStatus(CibilStatusEnum.GOOD);
+ 			le.setEnquiryStatus(EnquiryStatusEnum.APPROVED_FOR_LOAN_APPLICATION);
+ 			
+ 			SimpleMailMessage mail = new SimpleMailMessage();
+ 			mail.setFrom(from);
+ 			mail.setTo(le.getCustomerEmailId());
+ 			mail.setSubject("CLMS Enquiry Status");
+ 			mail.setText("Dear Customer    \n Your Cibil Score Is"+le.getCibil().getCibilStatus()+" : "+cs+ "\n Your Status has"+le.getCibil().getCibilStatus());
+ 			mailSender.send(mail);
+ 		}
+ 		else {
+ 			le.getCibil().setCibilStatus(CibilStatusEnum.POOR);
+ 			le.setEnquiryStatus(EnquiryStatusEnum.REJECTED);
+ 			SimpleMailMessage mail = new SimpleMailMessage();
+ 			mail.setFrom(from);
+ 			mail.setTo(le.getCustomerEmailId());
+ 			mail.setSubject("CLMS Enquiry Status");
+ 			mail.setText("Dear Customer    \n Your Cibil Score Is"+le.getCibil().getCibilStatus()+" : "+cs+ "\n Your Status has"+le.getCibil().getCibilStatus());
+ 			mailSender.send(mail);
+ 		}
+ 		
+ 		enquiryRepository.save(le);
+ 		
+ 		return le.getEnquiryStatus();
+ 	}
+
+
 
 }
