@@ -4,6 +4,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.app.entity.LoanApplication;
+import com.app.entity.LoanEnquiry;
 import com.app.entity.PersonalDocuments;
 import com.app.repository.ApplicationRepository;
 import com.app.entity.Cibil;
@@ -32,7 +33,7 @@ public class ApplicationServiceImpl implements ApplicationService{
 
 	
 	@Override
-	public String saveLoanApplication(Customer customer ,Cibil cibil,MultipartFile addressProof, MultipartFile panCard, MultipartFile incomeTax,
+	public String saveLoanApplication(LoanEnquiry loanEnquiry,MultipartFile addressProof, MultipartFile panCard, MultipartFile incomeTax,
 			MultipartFile aadharCard, MultipartFile photo,MultipartFile signature,MultipartFile bankCheque, MultipartFile salarySlips,String data){
 				
 
@@ -54,30 +55,29 @@ public class ApplicationServiceImpl implements ApplicationService{
 			
 			Customer cc = new Customer();
 			
-			cc.setCustomerName(customer.getCustomerName());//loan
-			cc.setDateOfBirth(customer.getDateOfBirth());//loan
+			cc.setCustomerName(loanEnquiry.getCustomerName());//loan
+			cc.setDateOfBirth(loanEnquiry.getDateOfBirth());//loan
 			cc.setAge(value.getCustomer().getAge());
-			cc.setGender(customer.getGender());//loan
+			cc.setGender(loanEnquiry.getGender());//loan
 			cc.setState(value.getCustomer().getState());
-			cc.setCustomerContactNumber(customer.getCustomerContactNumber());//loan
-			cc.setCustomerAlternateNumber(customer.getCustomerAlternateNumber());//loan
-			cc.setCustomerEmailId(customer.getCustomerEmailId());//loan
+			cc.setCustomerContactNumber(loanEnquiry.getCustomerContactNumber());//loan
+			cc.setCustomerAlternateNumber(loanEnquiry.getCustomerAlternateNumber());//loan
+			cc.setCustomerEmailId(loanEnquiry.getCustomerEmailId());//loan
 			cc.setCustomerPermanentAddress(value.getCustomer().getCustomerPermanentAddress());
 			cc.setCustomerCity(value.getCustomer().getCustomerCity());
 			cc.setCustomerPincode(value.getCustomer().getCustomerPincode());
-			cc.setAadharNo(customer.getAadharNo());//loan
-			cc.setPanCardNo(customer.getPanCardNo());//loan
+			cc.setAadharNo(loanEnquiry.getAadharNo());//loan
+			cc.setPanCardNo(loanEnquiry.getPanCardNo());//loan
+			
 			
 			value.setCustomer(cc);
 			
 			
-//			Cibil cb = new Cibil();
-//			cb.setCibilRemark(cibil.getCibilRemark());
-//			cb.setCibilScore(cibil.getCibilScore());
-//			cb.setCibilScoreDateTime(cibil.getCibilScoreDateTime());
-//			cb.setStatus(cibil.getStatus());
+			Cibil cb = new Cibil();
+			cb.setCibilScore(loanEnquiry.getCibil().getCibilScore());
+			cb.setCibilStatus(loanEnquiry.getCibil().getCibilStatus());
 			
-//			value.setCibil(cb);
+			value.setCibil(cb);
 			
 			PersonalDocuments docs = new PersonalDocuments();
 			
@@ -166,7 +166,7 @@ public class ApplicationServiceImpl implements ApplicationService{
 			*/
 			SimpleMailMessage mail = new SimpleMailMessage();
 			mail.setFrom(from);
-			mail.setTo(customer.getCustomerEmailId());
+			mail.setTo(loanEnquiry.getCustomerEmailId());
 			mail.setSubject("Loan Application");
 	        mail.setText("Dear Customer, Your Car loan Application has been submitted successfully.\n"+value.getCustomer().getCustomerName());
 			System.out.println(value);
@@ -206,6 +206,7 @@ public class ApplicationServiceImpl implements ApplicationService{
 		
 		return la.getLoanAmount();
 	}
+
 	
 
 }

@@ -47,6 +47,7 @@ public class EnquiryServiceImpl implements EnquiryService{
 	public String saveEnquiry(LoanEnquiry enquiry) {
 		
 		enquiry.setEnquiryStatus(EnquiryStatusEnum.PENDING);
+		enquiry.getCibil().setCibilScore(0);
 		enquiry.getCibil().setCibilStatus(CibilStatusEnum.PENDING);
 		
 		enquiryRepository.save(enquiry);
