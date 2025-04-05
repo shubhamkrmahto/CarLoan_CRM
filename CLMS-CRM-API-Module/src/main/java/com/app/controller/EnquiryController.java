@@ -233,7 +233,5 @@ public class EnquiryController {
 		return new ResponseEntity<String>("Cibil has been updated to"+status, HttpStatus.ACCEPTED);
 		
 	}
-	
-
 }
  

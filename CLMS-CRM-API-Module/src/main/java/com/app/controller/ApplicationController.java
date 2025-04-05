@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.app.entity.Cibil;
 import com.app.entity.Customer;
 import com.app.entity.LoanApplication;
+import com.app.entity.LoanEnquiry;
 import com.app.service.ApplicationService;
 
 @RestController
@@ -41,17 +42,12 @@ public class ApplicationController {
 			@RequestPart("data") String data
 			){
 		
-		String url ="http://localhost:7000/enquiry/getSingleEnquiry/"+id;
-		Customer customer = rt.getForObject(url, Customer.class);
+		String url ="http://localhost:7002/enquiry/getSingleEnquiry/"+id;
+		LoanEnquiry enquiry = rt.getForObject(url, LoanEnquiry.class);
 	
-		System.out.println(customer);
+		System.out.println(enquiry);
 		
-		String url1 ="http://localhost:9001/cibil/getCibilSingleData/"+id;
-		Cibil cibil = rt.getForObject(url1, Cibil.class);
-		
-		System.out.println(cibil);
-		
-			String msg = appService.saveLoanApplication(customer,cibil,addressProof,panCard,incomeTax,aadharCard,
+			String msg = appService.saveLoanApplication(enquiry,addressProof,panCard,incomeTax,aadharCard,
 					                        photo,signature,bankCheque,salarySlips,data);
 			
 			return new ResponseEntity<String>(msg , HttpStatus.OK);
@@ -70,5 +66,7 @@ public class ApplicationController {
 		
 		return new ResponseEntity<Double>(appService.getLoanAmount(id), HttpStatus.OK);
 	}
+	
+	
 	
 }
