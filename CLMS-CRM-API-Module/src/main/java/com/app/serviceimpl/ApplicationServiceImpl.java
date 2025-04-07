@@ -1,19 +1,21 @@
 package com.app.serviceimpl;
 
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+//github.com/shubhamkrmahto/CarLoan_CRM.git
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.app.entity.Cibil;
+import com.app.entity.Customer;
 import com.app.entity.LoanApplication;
 import com.app.entity.LoanEnquiry;
 import com.app.entity.PersonalDocuments;
 import com.app.repository.ApplicationRepository;
-import com.app.entity.Cibil;
-import com.app.entity.Customer;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.web.multipart.MultipartFile;
-
 import com.app.service.ApplicationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -24,6 +26,7 @@ public class ApplicationServiceImpl implements ApplicationService{
 	
 	@Autowired
 	ApplicationRepository appRepo;
+
 
 	@Autowired
 	JavaMailSender sender;
@@ -196,8 +199,6 @@ public class ApplicationServiceImpl implements ApplicationService{
 		return loanApplication;
 	}
 
-
-
 	@Override
 	public Double getLoanAmount(Integer id) {
 		// TODO Auto-generated method stub
@@ -206,7 +207,6 @@ public class ApplicationServiceImpl implements ApplicationService{
 		
 		return la.getLoanAmount();
 	}
-
 	
 
 }
