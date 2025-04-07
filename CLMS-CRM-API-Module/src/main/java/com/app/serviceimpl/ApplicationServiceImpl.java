@@ -207,15 +207,6 @@ public class ApplicationServiceImpl implements ApplicationService{
 		
 		return la.getLoanAmount();
 	}
-
-
-	
-
-
-	
-	
-
-	
 	
 
 }

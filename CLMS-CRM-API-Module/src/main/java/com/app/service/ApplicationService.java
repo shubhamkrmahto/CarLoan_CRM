@@ -1,7 +1,8 @@
 package com.app.service;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.app.entity.LoanApplication;
 import com.app.entity.LoanEnquiry;
-import org.springframework.web.multipart.MultipartFile;
 
 public interface ApplicationService {
 
@@ -13,5 +14,6 @@ public interface ApplicationService {
 	public LoanApplication getById(Integer id);
 	
 	public Double getLoanAmount(Integer id);
+	
 
 }

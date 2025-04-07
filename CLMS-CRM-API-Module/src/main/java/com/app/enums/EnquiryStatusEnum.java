@@ -1,4 +1,4 @@
-package com.app.enums;
+ package com.app.enums;
 
 public enum EnquiryStatusEnum {
 	
