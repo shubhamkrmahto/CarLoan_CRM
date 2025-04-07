@@ -1,17 +1,15 @@
 package com.app.service;
 
-<<<<<<< HEAD
-import java.util.Optional;
+import java.io.IOException;
 
-import com.app.entity.PermanentAddress;
-import com.app.entity.PersonalDocuments;
-=======
+import org.springframework.web.multipart.MultipartFile;
+
 import com.app.entity.BankAccountDetails;
 import com.app.entity.Customer;
 import com.app.entity.CustomerVerification;
 import com.app.entity.LoanGuarantor;
-import java.io.IOException;
-import org.springframework.web.multipart.MultipartFile;
+import com.app.entity.PermanentAddress;
+import com.app.entity.PersonalDocuments;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
