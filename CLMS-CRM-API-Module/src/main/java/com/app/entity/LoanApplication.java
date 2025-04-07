@@ -3,6 +3,7 @@ package com.app.entity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
@@ -15,7 +16,7 @@ import lombok.ToString;
 @ToString
 public class LoanApplication {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	 private Integer applicationId;
 	
 	@OneToOne(cascade = CascadeType.ALL)
