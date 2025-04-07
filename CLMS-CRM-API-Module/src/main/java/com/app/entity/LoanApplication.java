@@ -18,6 +18,7 @@ public class LoanApplication {
 	@GeneratedValue
 	 private Integer applicationId;
 	
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	 private Customer customer;
 	

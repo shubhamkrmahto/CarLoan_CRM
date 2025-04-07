@@ -1,34 +1,31 @@
 package com.app.serviceimpl;
 
-import java.time.LocalDate;
-import java.util.Optional;
-
-import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.app.entity.LoanApplication;
-
-import com.app.entity.PermanentAddress;
-import com.app.entity.PersonalDocuments;
 import java.io.IOException;
-import com.app.entity.BankAccountDetails;
-import com.app.entity.Customer;
-import com.app.entity.CustomerVerification;
-import com.app.entity.LoanApplication;
-import com.app.entity.LoanGuarantor;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.app.entity.BankAccountDetails;
 import com.app.entity.CurrentLoanDetails;
+import com.app.entity.Customer;
 import com.app.entity.CustomerAddress;
+import com.app.entity.CustomerVerification;
 import com.app.entity.DependentInfo;
+import com.app.entity.LoanApplication;
+import com.app.entity.LoanGuarantor;
 import com.app.entity.LocalAddress;
 import com.app.entity.MedicalInfo;
 import com.app.entity.PermanentAddress;
 import com.app.entity.PersonalDocuments;
 import com.app.entity.PreviousLoanDetails;
+import com.app.enums.PersonalDocumentStatusEnum;
 import com.app.repo.ApplicationRepository;
 import com.app.service.ApplicationService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -242,6 +239,7 @@ public class ApplicationServiceImpl implements ApplicationService{
 		docs.setSignature(sign);
 		docs.setBankCheque(cheque);
 		docs.setSalarySlips(slips);
+		docs.setDocumentStatus(PersonalDocumentStatusEnum.PENDING);
 			
 		app.setDocuments(docs);
 		
@@ -330,7 +328,38 @@ public class ApplicationServiceImpl implements ApplicationService{
 		return "Loan Application Submitted successfully";
 	}
 
-	
-	
 
+	@Override
+	public void statusUpdates(Integer id, PersonalDocumentStatusEnum status) {
+		Optional<LoanApplication> loan=appRepo.findById(id);
+		if(loan.isPresent())
+		{
+			LoanApplication application=loan.get();
+			application.getDocuments().setDocumentStatus(status);
+		appRepo.save(application);
+		
+	    }
+	}
+
+
+
+
+
+	@Override
+	public List<LoanApplication> getLoanAppsSentToOE() {
+		List<LoanApplication> list=new ArrayList<LoanApplication>();
+
+		List<LoanApplication> loanapps = appRepo.findAll();		
+		for (LoanApplication loanApplication : loanapps) {
+			PersonalDocumentStatusEnum documentStatus = loanApplication.getDocuments().getDocumentStatus();
+		     if(documentStatus.equals("FORWARD_TO_OE")) {
+		    	 list.add(loanApplication);
+		     }
+		}
+		return list;
+	}
 }
+		
+
+
+

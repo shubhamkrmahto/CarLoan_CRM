@@ -2,10 +2,13 @@ package com.app.controller;
 
 
 import java.io.IOException;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +23,9 @@ import com.app.entity.Cibil;
 import com.app.entity.Customer;
 import com.app.entity.PermanentAddress;
 import com.app.entity.PersonalDocuments;
+import com.app.enums.PersonalDocumentStatusEnum;
 import com.app.entity.CustomerVerification;
+import com.app.entity.LoanApplication;
 import com.app.entity.LoanGuarantor;
 import com.app.service.ApplicationService;
 
@@ -28,7 +33,7 @@ import com.app.service.ApplicationService;
 public class ApplicationController {
 	
 	@Autowired
-	ApplicationService appService;
+	ApplicationService  appService;
 	
 	@Autowired
 	RestTemplate rt;
@@ -52,7 +57,7 @@ public class ApplicationController {
 	
 		System.out.println(customer);
 		
-		String msg = appService.saveLoanApplication(customer,addressProof,panCard,incomeTax,aadharCard,
+		String msg =  appService.saveLoanApplication(customer,addressProof,panCard,incomeTax,aadharCard,
 				                        photo,signature,bankCheque,salarySlips,data);
 		return new ResponseEntity<String>(msg , HttpStatus.OK);
 	}
@@ -72,7 +77,7 @@ public class ApplicationController {
 	public ResponseEntity<String> updateBankDetails(@PathVariable("id") Integer id, @RequestBody BankAccountDetails bad)
 	{
 		
-		String msg = appService.updateBankDetails(id,bad);
+		String msg =  appService.updateBankDetails(id,bad);
 		return new ResponseEntity<String>(msg, HttpStatus.OK);
 	}
 	
@@ -80,7 +85,7 @@ public class ApplicationController {
 	public ResponseEntity<String> updateCustomerVerification(@PathVariable("id") Integer id, @RequestBody CustomerVerification cv)
 	{
 		
-		String msg = appService.updateCustomerVerification(id,cv);
+		String msg =  appService.updateCustomerVerification(id,cv);
 		return new ResponseEntity<String>(msg, HttpStatus.OK);
 	}
 	
@@ -88,7 +93,7 @@ public class ApplicationController {
 	public ResponseEntity<String> updateLoanGuarantor(@PathVariable("id") Integer id, @RequestBody LoanGuarantor lg)
 	{
 		
-		String msg = appService.updateGuarantorDetails(id,lg);
+		String msg =  appService.updateGuarantorDetails(id,lg);
 		return new ResponseEntity<String>(msg, HttpStatus.OK);
 	}
 	
@@ -99,7 +104,7 @@ public class ApplicationController {
 	public ResponseEntity<String> chengeAllDataforPermanentAddress(@PathVariable("id")Integer id,
 			                                                                        @RequestBody PermanentAddress permanentAddress)
 	{
-	String address=appService.updatePermanentAddress(id,permanentAddress);
+	String address= appService.updatePermanentAddress(id,permanentAddress);
 	
 	return new ResponseEntity<String>(address,HttpStatus.OK);
   }
@@ -109,11 +114,29 @@ public class ApplicationController {
 	public ResponseEntity<String> updatePersonalDoc(@PathVariable("id")Integer id,
 			                          @RequestBody PersonalDocuments pdocuments)
 	{
-		String personalDocuments=appService.updatePersonalDocm(id,pdocuments);
+		String personalDocuments= appService.updatePersonalDocm(id,pdocuments);
 		return new ResponseEntity<String>(personalDocuments,HttpStatus.OK);
 	}
 	
+	@PatchMapping("StatusUpdate/{id}/{status}")
+	public ResponseEntity<String> statusUpdate(@PathVariable("id")Integer id,
+			                                               @PathVariable("status")PersonalDocumentStatusEnum status)
+	{	                                             
+	  appService.statusUpdates(id,status);
+	return new ResponseEntity<String>("Document Send to CM",HttpStatus.OK);
+	}
 	
+     @GetMapping("/getloanappssenttooe")
+	 public ResponseEntity <List<LoanApplication>> getPresonalDocument()
+	 {
+		 List<LoanApplication> loanApps=appService.getLoanAppsSentToOE();
+		
+		 return new ResponseEntity<List<LoanApplication>>(loanApps,HttpStatus.OK);
+	 }
+			 
+			 
+			
+	 
 	
 	
 }

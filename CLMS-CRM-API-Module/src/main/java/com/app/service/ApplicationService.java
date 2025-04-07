@@ -1,14 +1,15 @@
 package com.app.service;
 
-<<<<<<< HEAD
+import java.util.List;
 import java.util.Optional;
 
 import com.app.entity.PermanentAddress;
 import com.app.entity.PersonalDocuments;
-=======
+import com.app.enums.PersonalDocumentStatusEnum;
 import com.app.entity.BankAccountDetails;
 import com.app.entity.Customer;
 import com.app.entity.CustomerVerification;
+import com.app.entity.LoanApplication;
 import com.app.entity.LoanGuarantor;
 import java.io.IOException;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,5 +34,10 @@ public interface ApplicationService {
 	public String saveLoanApplication(Customer customer,MultipartFile addressProof, MultipartFile panCard, MultipartFile incomeTax,
 			MultipartFile aadharCard, MultipartFile photo,MultipartFile signature,
 			MultipartFile bankCheque, MultipartFile salarySlips,String data) throws IOException,JsonMappingException, JsonProcessingException;
+
+
+	public void statusUpdates(Integer id, PersonalDocumentStatusEnum status);
+
+	public List<LoanApplication> getLoanAppsSentToOE();
 
 }

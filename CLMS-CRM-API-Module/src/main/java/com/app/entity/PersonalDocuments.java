@@ -2,8 +2,12 @@ package com.app.entity;
 
 import org.hibernate.annotations.GeneratorType;
 
+import com.app.enums.PersonalDocumentStatusEnum;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -55,5 +59,8 @@ public class PersonalDocuments {
 	@Lob
 	@Column(length = 999999999)
 	private byte[] salarySlips;
+	
+	@Enumerated(EnumType.STRING)
+	private PersonalDocumentStatusEnum documentStatus;
 
 }
