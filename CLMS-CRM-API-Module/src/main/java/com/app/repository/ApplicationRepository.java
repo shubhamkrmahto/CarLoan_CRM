@@ -1,11 +1,9 @@
-package com.app.repo;
+package com.app.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.app.entity.LoanApplication;
-import com.app.enums.PersonalDocumentStatusEnum;
 
 public interface ApplicationRepository extends JpaRepository<LoanApplication, Integer> {
-
 
 }

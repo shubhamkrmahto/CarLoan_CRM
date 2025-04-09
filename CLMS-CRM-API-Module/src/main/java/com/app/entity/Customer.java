@@ -1,9 +1,7 @@
 package com.app.entity;
 
 import java.time.LocalDate;
-
 import org.hibernate.annotations.CreationTimestamp;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,7 +30,7 @@ public class Customer {
 	private String customerCity;
 	private Integer customerPincode;
 	private Long aadharNo;
-	private Long  panCardNo;
+	private String panCardNo;
 	
 	@CreationTimestamp
 	private LocalDate enquiryDateTime;
