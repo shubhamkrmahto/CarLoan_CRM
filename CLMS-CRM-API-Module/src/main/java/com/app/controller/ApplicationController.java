@@ -1,5 +1,7 @@
 package com.app.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
-import com.app.entity.Cibil;
-import com.app.entity.Customer;
 import com.app.entity.LoanApplication;
 import com.app.entity.LoanEnquiry;
 import com.app.service.ApplicationService;
@@ -67,6 +67,25 @@ public class ApplicationController {
 		return new ResponseEntity<Double>(appService.getLoanAmount(id), HttpStatus.OK);
 	}
 	
+	@GetMapping("/updateStatusToDocumentVerified/{id}")
+	public ResponseEntity<String> updateStatusToDocumentVerified(@PathVariable("id") Integer id)
+	{
+		
+		return new ResponseEntity<String>(appService.updateStatusToDocumentVerified(id), HttpStatus.OK);
+	}
 	
+	@GetMapping("/updateStatusToDocumentRejected/{id}")
+	public ResponseEntity<String> updateStatusToDocumentRejected(@PathVariable("id") Integer id)
+	{
+		
+		return new ResponseEntity<String>(appService.updateStatusToDocumentRejected(id), HttpStatus.OK);
+	}
+	
+	@GetMapping("/getAllByForwardToOE/{id}")
+	public ResponseEntity<List<LoanApplication>> getAllByForwardToOE()
+	{
+		
+		return new ResponseEntity<List<LoanApplication>>(appService.getLoanStatusToForwardToOE(), HttpStatus.OK);
+	}
 	
 }
