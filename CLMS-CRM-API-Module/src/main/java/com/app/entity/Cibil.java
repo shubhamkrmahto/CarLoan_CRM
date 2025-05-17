@@ -1,9 +1,5 @@
 package com.app.entity;
 
-//import java.time.LocalDateTime;
-
-//import org.springframework.format.annotation.DateTimeFormat;
-
 import com.app.enums.CibilStatusEnum;
 
 import jakarta.persistence.Entity;
@@ -30,7 +26,5 @@ public class Cibil {
 	private Integer cibilScore;
 	@Enumerated(EnumType.STRING)
 	private CibilStatusEnum cibilStatus;
-
-
 
 }
