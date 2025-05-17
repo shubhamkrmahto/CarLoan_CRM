@@ -35,7 +35,7 @@ public class LoanEnquiry {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer enquiryId;
 	private String customerName;
-	@JsonFormat(pattern = "dd-MM-yyyy")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateOfBirth;
 	private String gender;
 	private String customerEmailId;

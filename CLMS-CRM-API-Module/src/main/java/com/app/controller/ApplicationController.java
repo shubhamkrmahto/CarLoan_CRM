@@ -43,7 +43,7 @@ public class ApplicationController {
 			@RequestPart("data") String data
 			){
 		
-		String url ="http://localhost:7002/enquiry/getSingleEnquiry/"+id;
+		String url ="http://localhost:7000/enquiry/getSingleEnquiry/"+id;
 		LoanEnquiry enquiry = rt.getForObject(url, LoanEnquiry.class);
 	
 		System.out.println(enquiry);

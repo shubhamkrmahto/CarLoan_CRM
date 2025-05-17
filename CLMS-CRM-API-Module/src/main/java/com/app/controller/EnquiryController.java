@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -22,7 +23,7 @@ import com.app.entity.Cibil;
 import com.app.entity.LoanEnquiry;
 import com.app.enums.EnquiryStatusEnum;
 import com.app.service.EnquiryService;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/enquiry")
 public class EnquiryController {
@@ -40,6 +41,7 @@ public class EnquiryController {
 	public ResponseEntity<String> saveEnquiry(@RequestBody LoanEnquiry enquiry){
 		
 		log.info("Enquiry Controller post mapping called...!");
+		System.out.println(enquiry);
 		
 		String msg = enquiryService.saveEnquiry(enquiry);
 		
@@ -49,7 +51,7 @@ public class EnquiryController {
 	
 	//method to change enquiry status from crm
 	
-	@GetMapping("/enquirystatus/{id}")
+	@PatchMapping("/enquirystatus/{id}")
 	public ResponseEntity<String> sendEnquiryStatusToOE(@PathVariable Integer id){
 		
 		String status =enquiryService.setenquiryStatus(id);
@@ -112,6 +114,8 @@ public class EnquiryController {
 	
 	
 	//                PATCH MAPPING
+	
+	
 	
 	
 	
