@@ -25,6 +25,7 @@ public class ApplicationController {
 	@Autowired
 	ApplicationService appService;
 	
+	
 	@Autowired
 	RestTemplate rt;
 	
