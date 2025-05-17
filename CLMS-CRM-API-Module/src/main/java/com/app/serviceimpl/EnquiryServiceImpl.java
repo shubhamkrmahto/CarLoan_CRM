@@ -291,6 +291,12 @@ public class EnquiryServiceImpl implements EnquiryService{
 	List<LoanEnquiry> list = enquiryRepository.findByEnquiryStatus(EnquiryStatusEnum.FORWARD_TO_OE);
 		return list;
 	}
+	
+	@Override
+	public List<LoanEnquiry> getApprovedEnquiry() {
+		List<LoanEnquiry> list = enquiryRepository.findByEnquiryStatus(EnquiryStatusEnum.APPROVED_FOR_LOAN_APPLICATION);
+		return list;
+	}
 
 
 	@Override

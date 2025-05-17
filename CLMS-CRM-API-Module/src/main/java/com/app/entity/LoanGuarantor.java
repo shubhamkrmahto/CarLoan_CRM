@@ -21,7 +21,6 @@ public class LoanGuarantor {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer loanGuarantorId;
 
-	private Integer guarantorId;
 	private String guarantorName;
 	private String guarantorDateOfBirth;
 	private String guarantorRelationShipWithCustomer;
