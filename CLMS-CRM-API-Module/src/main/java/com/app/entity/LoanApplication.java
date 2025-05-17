@@ -1,6 +1,6 @@
 package com.app.entity;
 
-import com.app.enums.LoanStatusEnum;
+import com.app.enums.LoanApplicationStatusEnum;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -30,7 +30,7 @@ public class LoanApplication {
 	 
 	 @Enumerated(EnumType.STRING)
 
-	 private LoanStatusEnum loanApplicationStatus;
+	 private LoanApplicationStatusEnum loanApplicationStatus;
 	 
 	 @OneToOne(cascade = CascadeType.ALL)
 	 private PersonalDocuments documents;

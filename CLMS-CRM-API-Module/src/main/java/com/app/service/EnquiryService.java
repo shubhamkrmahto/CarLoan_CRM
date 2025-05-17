@@ -39,6 +39,8 @@ public interface EnquiryService {
 
 	public List<LoanEnquiry> getEnquiryForwardToOe();
 	
+	public List<LoanEnquiry> getApprovedEnquiry();
+	
 	public EnquiryStatusEnum updateCibilScore(Integer enqId,Integer cs);
 	
 }

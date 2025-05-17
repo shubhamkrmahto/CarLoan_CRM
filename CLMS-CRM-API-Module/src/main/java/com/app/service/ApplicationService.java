@@ -23,6 +23,8 @@ public interface ApplicationService {
 	
 	public LoanApplication getById(Integer id);
 	
+	public List<Integer> getLoanApplicationsID();
+	
 	public Double getLoanAmount(Integer id);
 	
 

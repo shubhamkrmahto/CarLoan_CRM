@@ -2,16 +2,17 @@
 
 import java.time.LocalDate;
 import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,11 +20,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import com.app.entity.Cibil;
 import com.app.entity.LoanEnquiry;
 import com.app.enums.EnquiryStatusEnum;
 import com.app.service.EnquiryService;
-@CrossOrigin("*")
+
+
+@CrossOrigin
+
 @RestController
 @RequestMapping("/enquiry")
 public class EnquiryController {
@@ -64,6 +67,13 @@ public class EnquiryController {
 	@GetMapping("/getEnquiryForward_To_Oe")
 	public ResponseEntity<List<LoanEnquiry>> getEnquirySentToOE(){
 		List<LoanEnquiry> list =enquiryService.getEnquiryForwardToOe();
+		System.out.println(list);
+		return new ResponseEntity<List<LoanEnquiry>>(list , HttpStatus.OK);
+	}
+	
+	@GetMapping("/getApprovedEnquiry")
+	public ResponseEntity<List<LoanEnquiry>> getApprovedEnquiry(){
+		List<LoanEnquiry> list =enquiryService.getApprovedEnquiry();
 		System.out.println(list);
 		return new ResponseEntity<List<LoanEnquiry>>(list , HttpStatus.OK);
 	}
@@ -205,6 +215,15 @@ public class EnquiryController {
 		return new ResponseEntity<String>(msg, HttpStatus.OK);
 	}	
 	
+	@GetMapping("/updateEnquiryStatus/{id}")
+	public ResponseEntity<String> updateEnquiryStatus(@PathVariable("id") Integer id)
+	{
+		log.info(" Customer PanNo PATCH method mapping called...!");
+		
+		String msg = enquiryService.setenquiryStatus(id);
+		
+		return new ResponseEntity<String>(msg, HttpStatus.OK);
+	}
 	
 	
 	//            DELETE MAPPING
@@ -222,17 +241,11 @@ public class EnquiryController {
 	
 	// CIBIL METHODS BELOW THIS COMMENT
 	
-	@PatchMapping("updateStatus/{enqid}")
-	public ResponseEntity<String> updateStatus(@PathVariable("enqid") Integer eid)
+	@GetMapping("/updateStatus/{enqid}/{cibil}")
+	public ResponseEntity<String> updateStatus(@PathVariable("enqid") Integer eid,@PathVariable("cibil") Integer cibil)
 	{
 		
-		String urlToUpdate = "http://localhost:8989/UpdateCibil";
-		
-		Integer genOECibil = rt.getForObject(urlToUpdate, Integer.class);
-		
-		System.out.println(genOECibil);
-		
-		EnquiryStatusEnum status = enquiryService.updateCibilScore(eid, genOECibil);
+		EnquiryStatusEnum status = enquiryService.updateCibilScore(eid, cibil);
 		
 		return new ResponseEntity<String>("Cibil has been updated to"+status, HttpStatus.ACCEPTED);
 		
