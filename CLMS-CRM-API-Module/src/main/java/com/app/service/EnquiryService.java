@@ -2,6 +2,8 @@ package com.app.service;
 
 import java.time.LocalDate;
 import java.util.List;
+
+import com.app.entity.LoanApplication;
 import com.app.entity.LoanEnquiry;
 import com.app.enums.EnquiryStatusEnum;
 
@@ -38,4 +40,5 @@ public interface EnquiryService {
 	public List<LoanEnquiry> getEnquiryForwardToOe();
 	
 	public EnquiryStatusEnum updateCibilScore(Integer enqId,Integer cs);
+	
 }

@@ -303,13 +303,25 @@ public class EnquiryServiceImpl implements EnquiryService{
 		
 		if(cs>650) {
 			le.getCibil().setCibilStatus(CibilStatusEnum.GOOD);
-			le.setEnquiryStatus(EnquiryStatusEnum.APPROVED_FOR_LOAN_APPLICATION);
-			
-		}
-		else {
-			le.getCibil().setCibilStatus(CibilStatusEnum.POOR);
-			le.setEnquiryStatus(EnquiryStatusEnum.REJECTED);
-		}
+ 			le.setEnquiryStatus(EnquiryStatusEnum.APPROVED_FOR_LOAN_APPLICATION);
+
+ 			SimpleMailMessage mail = new SimpleMailMessage();
+ 			mail.setFrom(from);
+ 			mail.setTo(le.getCustomerEmailId());
+ 			mail.setSubject("CLMS Enquiry Status");
+ 			mail.setText("Dear Customer    \n Your Cibil Score is :"+le.getCibil().getCibilScore()+" : "+cs+ "\n Your Status has been"+le.getCibil().getCibilStatus());
+ 			mailSender.send(mail);
+ 		}
+ 		else {
+ 			le.getCibil().setCibilStatus(CibilStatusEnum.POOR);
+ 			le.setEnquiryStatus(EnquiryStatusEnum.REJECTED);
+ 			SimpleMailMessage mail = new SimpleMailMessage();
+ 			mail.setFrom(from);
+ 			mail.setTo(le.getCustomerEmailId());
+ 			mail.setSubject("CLMS Enquiry Status");
+ 			mail.setText("Dear Customer    \n Your Cibil Score is :"+le.getCibil().getCibilScore()+" : "+cs+ "\n Your Status has been"+le.getCibil().getCibilStatus());
+ 			mailSender.send(mail);
+ 		}
 		
 		enquiryRepository.save(le);
 		
