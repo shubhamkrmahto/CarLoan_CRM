@@ -1,10 +1,7 @@
 package com.app.entity;
 
-import java.sql.Date;
 import java.time.LocalDate;
-
 import org.hibernate.annotations.CreationTimestamp;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

@@ -52,6 +52,7 @@ public class EnquiryServiceImpl implements EnquiryService{
 	public String saveEnquiry(LoanEnquiry enquiry) {
 		
 		enquiry.setEnquiryStatus(EnquiryStatusEnum.PENDING);
+		enquiry.getCibil().setCibilScore(0);
 		enquiry.getCibil().setCibilStatus(CibilStatusEnum.PENDING);
 		
 		enquiryRepository.save(enquiry);
@@ -299,21 +300,20 @@ public class EnquiryServiceImpl implements EnquiryService{
 
 	@Override
 	public EnquiryStatusEnum updateCibilScore(Integer enqId, Integer cs) {
- 		// TODO Auto-generated method stub
- 		
- 		 LoanEnquiry le = getSingleEnquiry(enqId);
- 		
- 		le.getCibil().setCibilScore(cs);
- 		
- 		if(cs>650) {
- 			le.getCibil().setCibilStatus(CibilStatusEnum.GOOD);
+		
+		 LoanEnquiry le = getSingleEnquiry(enqId);
+		
+		le.getCibil().setCibilScore(cs);
+		
+		if(cs>650) {
+			le.getCibil().setCibilStatus(CibilStatusEnum.GOOD);
  			le.setEnquiryStatus(EnquiryStatusEnum.APPROVED_FOR_LOAN_APPLICATION);
- 			
+
  			SimpleMailMessage mail = new SimpleMailMessage();
  			mail.setFrom(from);
  			mail.setTo(le.getCustomerEmailId());
  			mail.setSubject("CLMS Enquiry Status");
- 			mail.setText("Dear Customer    \n Your Cibil Score Is"+le.getCibil().getCibilStatus()+" : "+cs+ "\n Your Status has"+le.getCibil().getCibilStatus());
+ 			mail.setText("Dear Customer    \n Your Cibil Score is :"+le.getCibil().getCibilScore()+" : "+cs+ "\n Your Status has been"+le.getCibil().getCibilStatus());
  			mailSender.send(mail);
  		}
  		else {
@@ -323,15 +323,13 @@ public class EnquiryServiceImpl implements EnquiryService{
  			mail.setFrom(from);
  			mail.setTo(le.getCustomerEmailId());
  			mail.setSubject("CLMS Enquiry Status");
- 			mail.setText("Dear Customer    \n Your Cibil Score Is"+le.getCibil().getCibilStatus()+" : "+cs+ "\n Your Status has"+le.getCibil().getCibilStatus());
+ 			mail.setText("Dear Customer    \n Your Cibil Score is :"+le.getCibil().getCibilScore()+" : "+cs+ "\n Your Status has been"+le.getCibil().getCibilStatus());
  			mailSender.send(mail);
  		}
- 		
- 		enquiryRepository.save(le);
- 		
- 		return le.getEnquiryStatus();
- 	}
-
-
+		
+		enquiryRepository.save(le);
+		
+		return le.getEnquiryStatus();
+	}
 
 }
