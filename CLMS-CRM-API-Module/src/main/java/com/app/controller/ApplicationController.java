@@ -18,7 +18,7 @@ import com.app.entity.LoanApplication;
 import com.app.entity.LoanEnquiry;
 import com.app.service.ApplicationService;
 
-@CrossOrigin
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/loanApplication")
 public class ApplicationController {
@@ -29,6 +29,11 @@ public class ApplicationController {
 	
 	@Autowired
 	RestTemplate rt;
+	
+	@GetMapping("/test")
+	public String testAPIGateway() {
+		return "API Gateway Test";
+	}
 	
 	@PostMapping("/saveapplication/{id}")
 	public ResponseEntity<String> getCustomerInfo(@PathVariable("id") Integer id, 
