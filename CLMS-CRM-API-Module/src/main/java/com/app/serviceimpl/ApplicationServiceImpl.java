@@ -1,5 +1,6 @@
 package com.app.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,7 +15,7 @@ import com.app.entity.LocalAddress;
 import com.app.entity.MedicalInfo;
 import com.app.entity.PermanentAddress;
 import com.app.entity.PersonalDocuments;
-import com.app.enums.LoanStatusEnum;
+import com.app.enums.LoanApplicationStatusEnum;
 import com.app.repository.ApplicationRepository;
 import com.app.entity.BankAccountDetails;
 import com.app.entity.Cibil;
@@ -100,6 +101,8 @@ public class ApplicationServiceImpl implements ApplicationService{
 			docs.setSalarySlips(salarySlips.getBytes());
 				
 			value.setDocuments(docs);
+			
+			value.setLoanApplicationStatus(LoanApplicationStatusEnum.LOAN_APPLICATION_SUBMITTED);
 			
 			SimpleMailMessage mail = new SimpleMailMessage();
 			mail.setFrom(from);
@@ -354,7 +357,7 @@ public class ApplicationServiceImpl implements ApplicationService{
 	public String updateStatusToDocumentVerified(Integer id) {
 		
 	  LoanApplication byId = getById(id);
-	  byId.setLoanApplicationStatus(LoanStatusEnum.DOCUMENTS_VERIFIED);
+	  byId.setLoanApplicationStatus(LoanApplicationStatusEnum.DOCUMENTS_VERIFIED);
 	  
 	  appRepo.save(byId);
 	  log.info("Documents has been verified for Loan Application id : "+id);	
@@ -367,7 +370,7 @@ public class ApplicationServiceImpl implements ApplicationService{
 	public String updateStatusToDocumentRejected(Integer id) {
 		
 		  LoanApplication byId = getById(id);
-		  byId.setLoanApplicationStatus(LoanStatusEnum.DOCUMENTS_REJECTED);
+		  byId.setLoanApplicationStatus(LoanApplicationStatusEnum.DOCUMENTS_REJECTED);
 		  
 		  appRepo.save(byId);
 		  log.info("Documents has been Rejected for Loan Application id : "+id);	
@@ -379,7 +382,23 @@ public class ApplicationServiceImpl implements ApplicationService{
 	@Override
 	public List<LoanApplication> getLoanStatusToForwardToOE() {
 
-		return appRepo.findAllByLoanApplicationStatus(LoanStatusEnum.FORWARD_TO_OE);
+		return appRepo.findAllByLoanApplicationStatus(LoanApplicationStatusEnum.FORWARDED_TO_OE);
+	}
+
+
+
+	@Override
+	public List<Integer> getLoanApplicationsID() {
+		// TODO Auto-generated method stub
+		List<LoanApplication> applications = appRepo.findAll();
+		
+		List<Integer> applied = new ArrayList<>();
+		
+		for(LoanApplication l : applications) {
+			applied.add(l.getApplicationId());		
+			}
+		
+		return applied;
 	}
 	
 	
