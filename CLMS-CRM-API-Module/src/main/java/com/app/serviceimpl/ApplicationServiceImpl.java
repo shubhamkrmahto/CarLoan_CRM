@@ -2,6 +2,9 @@ package com.app.serviceimpl;
 
 import java.util.List;
 import java.util.Optional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.app.entity.LoanApplication;
@@ -38,7 +41,9 @@ public class ApplicationServiceImpl implements ApplicationService{
 	JavaMailSender sender;
 	
 	@Value("${spring.mail.username}")
-	private String from;  
+	private String from;
+	
+	private static final Logger log = LoggerFactory.getLogger(ApplicationServiceImpl.class);
 
 	
 	@Override
@@ -53,7 +58,7 @@ public class ApplicationServiceImpl implements ApplicationService{
 			
 			LoanApplication value = mapper.readValue(data, LoanApplication.class);
 			
-			System.out.println(data);
+			log.info("LoanApplication Json Data : "+data);
 			System.out.println(value);
 			
 			
@@ -108,9 +113,11 @@ public class ApplicationServiceImpl implements ApplicationService{
 	        
 	        sender.send(mail);
 	        
+	        log.info("Loan Application Submitted and Mail Sent successfully...! :- "+value.getApplicationId());
 			return "Loan Application Submitted successfully";
 			
 		} catch (Exception e) {
+			log.error("LoanApplication does not save "+e.getMessage());
 			e.printStackTrace();
 			return "Please Enter the details Correctly";
 		}
@@ -130,7 +137,6 @@ public class ApplicationServiceImpl implements ApplicationService{
 
 	@Override
 	public Double getLoanAmount(Integer id) {
-		// TODO Auto-generated method stub
 		
 		LoanApplication la = getById(id);
 		
@@ -155,9 +161,10 @@ public class ApplicationServiceImpl implements ApplicationService{
 	     pAddress.getAddress().getLaddr().setState(permanentAddress.getState());
 	
 	     appRepo.save(pAddress);
-		
+		log.info("Permanent Address has been Updated....! :- "+pAddress.getApplicationId());
 		return "Permanent Address has been Updated....!";
 		}
+		log.warn("Record is not available");
 		return "Record is not available";
 	}
 
@@ -178,9 +185,10 @@ public class ApplicationServiceImpl implements ApplicationService{
 		application.getDocuments().setPanCard(pdocuments.getPanCard());
          appRepo.save(application);
 		
-		
+		log.info("Personal Doc has been Updated....! :- " +application.getApplicationId());
 		return "Personal Doc has been Updated....! ";
 		}
+		log.warn("Record is not available");
 		return "Record is not available";
 	}
 	
@@ -200,17 +208,16 @@ public class ApplicationServiceImpl implements ApplicationService{
 			loanApplication.getBankDetails().setAccountBalance(bad.getAccountBalance());
 			
 			appRepo.save(loanApplication);
-			
-			return "Bank Account Details updated Successfully.";
+			log.info("Bank Account Details updated Successfully...! :- "+loanApplication.getApplicationId());
+			return "Bank Account Details updated Successfully...!";
 			
 		}
-		
-		return "Bank Account Details not present for this Loan Application.";
+		log.warn("Bank Account Details not present for this Loan Application...!");
+		return "Bank Account Details not present for this Loan Application...!";
 	}
 
 	@Override
 	public String updateCustomerVerification(Integer id, CustomerVerification cv) {
-		// TODO Auto-generated method stub
 		
 			Optional<LoanApplication> byId = appRepo.findById(id);
 		
@@ -223,17 +230,16 @@ public class ApplicationServiceImpl implements ApplicationService{
 			loanApplication.getVerification().setVerificationDate(cv.getVerificationDate());
 			
 			appRepo.save(loanApplication);
-			
-			return "Customer Verification has been updated Successfully.";
+			log.info("Customer Verification has been updated Successfully...! :- "+loanApplication.getApplicationId());
+			return "Customer Verification has been updated Successfully...!";
 			
 		}
-		
-		return "Customer Verification not present for this Loan Application.";
+		log.warn("Customer Verification not present for this Loan Application...!");
+		return "Customer Verification not present for this Loan Application...!";
 	}
 	
 	@Override
 	public String updateCustomerDetails(Integer id, Customer c) {
-		// TODO Auto-generated method stub
 		
 			Optional<LoanApplication> byId = appRepo.findById(id);
 		
@@ -257,16 +263,16 @@ public class ApplicationServiceImpl implements ApplicationService{
 			
 			appRepo.save(loanApplication);
 			
-			return "Customer Details has been updated Successfully.";
+			log.info("Customer Details has been updated Successfully...! :- "+loanApplication.getApplicationId());
+			return "Customer Details has been updated Successfully...!";
 			
 		}
-		
-		return "Customer Details are not present for this Loan Application.";
+		log.warn("Customer Details are not present for this Loan Application...!");
+		return "Customer Details are not present for this Loan Application...!";
 	}
 
 	@Override
 	public String updateGuarantorDetails(Integer id, LoanGuarantor lg) {
-		// TODO Auto-generated method stub
 		
 		Optional<LoanApplication> byId = appRepo.findById(id);
 	
@@ -285,12 +291,12 @@ public class ApplicationServiceImpl implements ApplicationService{
 		loanApplication.getLoanGuarantor().setGuarantorPermanentAddress(lg.getGuarantorPermanentAddress());
 		
 		appRepo.save(loanApplication);
-		
-		return "Loan Guarantor Details has been updated Successfully.";
+		log.info("Loan Guarantor Details has been updated Successfully...! :- "+loanApplication.getApplicationId());
+		return "Loan Guarantor Details has been updated Successfully...!";
 		
 	}
-	
-	return "Loan Guarantor Details are not present for this Loan Application.";
+	log.warn("Loan Guarantor Details are not present for this Loan Application...!");
+	return "Loan Guarantor Details are not present for this Loan Application...!";
 
 	}
 	
@@ -312,9 +318,10 @@ public class ApplicationServiceImpl implements ApplicationService{
 		loanApplication.getAddress().getLaddr().setStreetName(local.getStreetName());
 		
 		appRepo.save(loanApplication);
-//		log.info("Local Address is Updated...");
+		log.info("Local Address is Updated...! :- "+loanApplication.getApplicationId());
 		return "Data Updated Successfully";
-	}		
+	}	
+		log.warn("Address not present for this id");	
 		return "Address not present for this id";
 	}
 
@@ -333,10 +340,10 @@ public class ApplicationServiceImpl implements ApplicationService{
 			 
 			appRepo.save(loanApplication);
 			
-//			log.info("Medical Information is Updated...");
+			log.info("Medical Information is Updated..."+loanApplication.getApplicationId());
 			return "Data updated Successfully";
 			}
-		
+		log.warn("MedicalInfo not present for this id");
 		return "MedicalInfo not present for this id";
 
 	}
@@ -345,13 +352,12 @@ public class ApplicationServiceImpl implements ApplicationService{
 
 	@Override
 	public String updateStatusToDocumentVerified(Integer id) {
-		// TODO Auto-generated method stub
 		
 	  LoanApplication byId = getById(id);
 	  byId.setLoanApplicationStatus(LoanStatusEnum.DOCUMENTS_VERIFIED);
 	  
 	  appRepo.save(byId);
-		
+	  log.info("Documents has been verified for Loan Application id : "+id);	
 		return "Documents has been verified for Loan Application id : "+id;
 	}
 
@@ -359,13 +365,12 @@ public class ApplicationServiceImpl implements ApplicationService{
 
 	@Override
 	public String updateStatusToDocumentRejected(Integer id) {
-		// TODO Auto-generated method stub
 		
 		  LoanApplication byId = getById(id);
 		  byId.setLoanApplicationStatus(LoanStatusEnum.DOCUMENTS_REJECTED);
 		  
 		  appRepo.save(byId);
-			
+		  log.info("Documents has been Rejected for Loan Application id : "+id);	
 			return "Documents has been Rejected for Loan Application id : "+id;
 	}
 

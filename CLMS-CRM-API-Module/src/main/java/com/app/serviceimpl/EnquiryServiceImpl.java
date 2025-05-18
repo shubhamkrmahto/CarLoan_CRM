@@ -37,16 +37,6 @@ public class EnquiryServiceImpl implements EnquiryService{
 	@Value("${spring.mail.username}")
 	private String from;  
 	
-	
-	@Override
-	public void deleteEnquiryField(Integer id) { 
-		
-	
-		enquiryRepository.deleteById(id);	
-		
-		log.info("Enquiry has been Deleted for Enquiry id : " + id);
-	}
-	
 
 	@Override
 	public String saveEnquiry(LoanEnquiry enquiry) {
@@ -72,207 +62,22 @@ public class EnquiryServiceImpl implements EnquiryService{
 				
 	}
 
-	@Override
-	public String updateFullName(Integer id, String cname) {
-		// TODO Auto-generated method stub
-		
-		Optional<LoanEnquiry> CById = enquiryRepository.findById(id);
-		if(CById.isPresent()) {
-		LoanEnquiry loanEnquiry = CById.get();
-		
-		loanEnquiry.setCustomerName(cname);
-		
-		enquiryRepository.save(loanEnquiry);
-
-
-		log.info("Enquiry Name has been updated successfully , for this id = " + id);
-		return "Customer Name has been updated Successfully.";
-		}
-		return "No valid result found for this id.";
-	}
 
 	
-	@Override
-	public String updateDateOfBirth(Integer id, LocalDate dob) {
-		// TODO Auto-generated method stub
-		
-		Optional<LoanEnquiry> CById = enquiryRepository.findById(id);
-		if(CById.isPresent()) {
-		LoanEnquiry loanEnquiry = CById.get();
-		
-		loanEnquiry.setDateOfBirth(dob);
-		
-		enquiryRepository.save(loanEnquiry);
-		
-		return "Customer Date of Birth has been updated Successfully.";
-		}
-		return "No valid result found for this id.";
-	}
-	
-	@Override
-	public String updateGender(Integer id, String gender) {
-		// TODO Auto-generated method stub
-
-		Optional<LoanEnquiry> CById = enquiryRepository.findById(id);
-		if(CById.isPresent()) {
-		LoanEnquiry loanEnquiry = CById.get();
-		
-		loanEnquiry.setGender(gender);
-		
-		enquiryRepository.save(loanEnquiry);
-		
-		return "Customer Gender has been updated Successfully.";
-		}
-		return "No valid result found for this id.";
-		
-	}
-	
-	@Override
-	public String updateEmail(Integer id, String email) {
-		// TODO Auto-generated method stub
-
-		Optional<LoanEnquiry> CById = enquiryRepository.findById(id);
-		
-		if(CById.isPresent()) {
-		
-		LoanEnquiry loanEnquiry = CById.get();
-		
-		loanEnquiry.setCustomerEmailId(email);
-		
-		enquiryRepository.save(loanEnquiry);
-		
-		log.info("Enquiry Email has been updated successfully , for this id = " + id);
-		
-		return "Customer Email has been updated Successfully.";
-		}
-		return "No valid result found for this id.";
-	}
-
-	@Override
-	public String updateContact(Integer id, Long contact) {
-		// TODO Auto-generated method stub
-
-		Optional<LoanEnquiry> CById = enquiryRepository.findById(id);
-		
-		if(CById.isPresent()) {
-		
-		LoanEnquiry loanEnquiry = CById.get();
-		
-		loanEnquiry.setCustomerContactNumber(contact);
-		
-		
-		enquiryRepository.save(loanEnquiry);
-		
-		log.info("Enquiry Contact has been updated successfully , for this id = " + id);
-		
-		return "Customer Contact Number has been updated Successfully.";
-		
-		}
-		return "No valid result found for this id.";
-	}
-
-
-	@Override
-	public String updateAlternate(Integer id, Long alternate) {
-		// TODO Auto-generated method stub
-
-		Optional<LoanEnquiry> CById = enquiryRepository.findById(id);
-		
-		if(CById.isPresent()) {
-		
-		LoanEnquiry loanEnquiry = CById.get();
-		
-		loanEnquiry.setCustomerAlternateNumber(alternate);
-		
-		enquiryRepository.save(loanEnquiry);
-		
-		log.info("Enquiry AlterNate contact number has been updated successfully , for this id = " + id);
-		
-		return "Customer Alternate Contact has been updated Successfully.";
-	}
-		return "No valid result found for this id.";
-	}
-
-	
-	@Override
-	public String updateAadharNo(Integer id, Long aadharNo) {
-		// TODO Auto-generated method stub
-
-		Optional<LoanEnquiry> CById = enquiryRepository.findById(id);
-		
-		if(CById.isPresent()) {
-		
-		LoanEnquiry loanEnquiry = CById.get();
-		
-		loanEnquiry.setAadharNo(aadharNo);
-		
-		enquiryRepository.save(loanEnquiry);
-		
-		return "Customer Aadhar No has been updated Successfully.";
-		}
-		return "No valid result found for this id.";
-	}
-
-
-	@Override
-	public String updatePanNo(Integer id, String panNo) {
-		// TODO Auto-generated method stub
-
-		Optional<LoanEnquiry> CById = enquiryRepository.findById(id);
-		
-		if(CById.isPresent()) {
-		
-		LoanEnquiry loanEnquiry = CById.get();
-		
-		loanEnquiry.setPanCardNo(panNo);
-		
-		enquiryRepository.save(loanEnquiry);
-		
-		return "Customer PanCard No No has been updated Successfully.";
-		}
-		return "No valid result found for this id.";
-	}
-
-	public String updateEnquiry(Integer enquiryId, LoanEnquiry loanEnquiry) {
-		
-		Optional<LoanEnquiry> loan = enquiryRepository.findById(enquiryId);
-		
-		LoanEnquiry loanData = loan.get();
-		
-		if(loan.isPresent())
-		{
-			
-			loanData.setCustomerName(loanEnquiry.getCustomerName());
-			loanData.setDateOfBirth(loanEnquiry.getDateOfBirth());
-			loanData.setGender(loanEnquiry.getGender());
-			loanData.setCustomerEmailId(loanEnquiry.getCustomerEmailId());
-			loanData.setCustomerContactNumber(loanEnquiry.getCustomerContactNumber());
-			loanData.setCustomerAlternateNumber(loanEnquiry.getCustomerAlternateNumber());
-			loanData.setAadharNo(loanEnquiry.getAadharNo());
-			loanData.setPanCardNo(loanEnquiry.getPanCardNo());
-			
-			enquiryRepository.save(loanData);
-
-			log.info("Loan Enquiry has been updated successfully for enquiry id = " + enquiryId);
-			return "Enquiry updated successfull...!";
-		}
-		
-		return "invalid Id";
-		
-	}
-
 	@Override
 	public LoanEnquiry getSingleEnquiry(Integer id) {
 		Optional<LoanEnquiry> byId = enquiryRepository.findById(id);	
 		
-		log.info(" GET SINGLE DATA successfully for enquiry id = " + id);
+		log.info(" Get single enquiry successfully for enquiry id = " + id);
 		return byId.get();
 	}
+	
+	
 
 	@Override
 	public List<LoanEnquiry> getAllEnquiry() {
 		
-		log.info(" GET All DATA successfully ");
+		log.info(" Get all Enquirys successfully ");
 		
 		return	enquiryRepository.findAll();
 
@@ -331,5 +136,209 @@ public class EnquiryServiceImpl implements EnquiryService{
 		
 		return le.getEnquiryStatus();
 	}
+	
+	
+	
+//	@Override
+//	public String updateFullName(Integer id, String cname) {
+//		// TODO Auto-generated method stub
+//		
+//		Optional<LoanEnquiry> CById = enquiryRepository.findById(id);
+//		if(CById.isPresent()) {
+//		LoanEnquiry loanEnquiry = CById.get();
+//		
+//		loanEnquiry.setCustomerName(cname);
+//		
+//		enquiryRepository.save(loanEnquiry);
+//
+//
+//		log.info("Enquiry Name has been updated successfully , for this id = " + id);
+//		return "Customer Name has been updated Successfully.";
+//		}
+//		return "No valid result found for this id.";
+//	}
+
+	
+//	@Override
+//	public String updateDateOfBirth(Integer id, LocalDate dob) {
+//		
+//		Optional<LoanEnquiry> CById = enquiryRepository.findById(id);
+//		if(CById.isPresent()) {
+//		LoanEnquiry loanEnquiry = CById.get();
+//		
+//		loanEnquiry.setDateOfBirth(dob);
+//		
+//		enquiryRepository.save(loanEnquiry);
+//		
+//		return "Customer Date of Birth has been updated Successfully.";
+//		}
+//		return "No valid result found for this id.";
+//	}
+//	
+//	@Override
+//	public String updateGender(Integer id, String gender) {
+//		// TODO Auto-generated method stub
+//
+//		Optional<LoanEnquiry> CById = enquiryRepository.findById(id);
+//		if(CById.isPresent()) {
+//		LoanEnquiry loanEnquiry = CById.get();
+//		
+//		loanEnquiry.setGender(gender);
+//		
+//		enquiryRepository.save(loanEnquiry);
+//		
+//		return "Customer Gender has been updated Successfully.";
+//		}
+//		return "No valid result found for this id.";
+//		
+//	}
+//	
+//	@Override
+//	public String updateEmail(Integer id, String email) {
+//		// TODO Auto-generated method stub
+//
+//		Optional<LoanEnquiry> CById = enquiryRepository.findById(id);
+//		
+//		if(CById.isPresent()) {
+//		
+//		LoanEnquiry loanEnquiry = CById.get();
+//		
+//		loanEnquiry.setCustomerEmailId(email);
+//		
+//		enquiryRepository.save(loanEnquiry);
+//		
+//		log.info("Enquiry Email has been updated successfully , for this id = " + id);
+//		
+//		return "Customer Email has been updated Successfully.";
+//		}
+//		return "No valid result found for this id.";
+//	}
+//
+//	@Override
+//	public String updateContact(Integer id, Long contact) {
+//		// TODO Auto-generated method stub
+//
+//		Optional<LoanEnquiry> CById = enquiryRepository.findById(id);
+//		
+//		if(CById.isPresent()) {
+//		
+//		LoanEnquiry loanEnquiry = CById.get();
+//		
+//		loanEnquiry.setCustomerContactNumber(contact);
+//		
+//		
+//		enquiryRepository.save(loanEnquiry);
+//		
+//		log.info("Enquiry Contact has been updated successfully , for this id = " + id);
+//		
+//		return "Customer Contact Number has been updated Successfully.";
+//		
+//		}
+//		return "No valid result found for this id.";
+//	}
+//
+//
+//	@Override
+//	public String updateAlternate(Integer id, Long alternate) {
+//		// TODO Auto-generated method stub
+//
+//		Optional<LoanEnquiry> CById = enquiryRepository.findById(id);
+//		
+//		if(CById.isPresent()) {
+//		
+//		LoanEnquiry loanEnquiry = CById.get();
+//		
+//		loanEnquiry.setCustomerAlternateNumber(alternate);
+//		
+//		enquiryRepository.save(loanEnquiry);
+//		
+//		log.info("Enquiry AlterNate contact number has been updated successfully , for this id = " + id);
+//		
+//		return "Customer Alternate Contact has been updated Successfully.";
+//	}
+//		return "No valid result found for this id.";
+//	}
+//
+//	
+//	@Override
+//	public String updateAadharNo(Integer id, Long aadharNo) {
+//		// TODO Auto-generated method stub
+//
+//		Optional<LoanEnquiry> CById = enquiryRepository.findById(id);
+//		
+//		if(CById.isPresent()) {
+//		
+//		LoanEnquiry loanEnquiry = CById.get();
+//		
+//		loanEnquiry.setAadharNo(aadharNo);
+//		
+//		enquiryRepository.save(loanEnquiry);
+//		
+//		return "Customer Aadhar No has been updated Successfully.";
+//		}
+//		return "No valid result found for this id.";
+//	}
+//
+//
+//	@Override
+//	public String updatePanNo(Integer id, String panNo) {
+//		// TODO Auto-generated method stub
+//
+//		Optional<LoanEnquiry> CById = enquiryRepository.findById(id);
+//		
+//		if(CById.isPresent()) {
+//		
+//		LoanEnquiry loanEnquiry = CById.get();
+//		
+//		loanEnquiry.setPanCardNo(panNo);
+//		
+//		enquiryRepository.save(loanEnquiry);
+//		
+//		return "Customer PanCard No No has been updated Successfully.";
+//		}
+//		return "No valid result found for this id.";
+//	}
+	
+	
+	
+	
+//	public String updateEnquiry(Integer enquiryId, LoanEnquiry loanEnquiry) {
+//	
+//	Optional<LoanEnquiry> loan = enquiryRepository.findById(enquiryId);
+//	
+//	LoanEnquiry loanData = loan.get();
+//	
+//	if(loan.isPresent())
+//	{
+//		
+//		loanData.setCustomerName(loanEnquiry.getCustomerName());
+//		loanData.setDateOfBirth(loanEnquiry.getDateOfBirth());
+//		loanData.setGender(loanEnquiry.getGender());
+//		loanData.setCustomerEmailId(loanEnquiry.getCustomerEmailId());
+//		loanData.setCustomerContactNumber(loanEnquiry.getCustomerContactNumber());
+//		loanData.setCustomerAlternateNumber(loanEnquiry.getCustomerAlternateNumber());
+//		loanData.setAadharNo(loanEnquiry.getAadharNo());
+//		loanData.setPanCardNo(loanEnquiry.getPanCardNo());
+//		
+//		enquiryRepository.save(loanData);
+//
+//		log.info("Loan Enquiry has been updated successfully for enquiry id = " + enquiryId);
+//		return "Enquiry updated successfull...!";
+//	}
+//	
+//	return "invalid Id";
+//	
+//}
+	
+	
+	
+//	@Override
+//	public void deleteEnquiryField(Integer id) { 
+//		
+//	
+//		enquiryRepository.deleteById(id);	
+//		
+//		log.info("Enquiry has been Deleted for Enquiry id : " + id);
+//	}
 
 }
