@@ -1,6 +1,5 @@
 package com.app.controller;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -9,12 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -99,122 +96,9 @@ public class EnquiryController {
 		return new ResponseEntity<List<LoanEnquiry>>(loanEnquiry, HttpStatus.OK);
 	}
 
-	// PUT MAPPING
-
-	@PutMapping("/updateEnquiry/{enquiryId}")
-	public ResponseEntity<String> updateEnquiry(@PathVariable("enquiryId") int enquiryId,
-			@RequestBody LoanEnquiry loanEnquiry) {
-		log.info("put mapping called");
-
-		String msg = enquiryService.updateEnquiry(enquiryId, loanEnquiry);
-
-		return new ResponseEntity<String>(msg, HttpStatus.ACCEPTED);
-
-	}
-
-	// PATCH MAPPING
-
-	@PatchMapping("/updateCustomerName/{id}/{cname}")
-	public ResponseEntity<String> updateCustomerName(@PathVariable("id") Integer id,
-			@PathVariable("cname") String cname) {
-
-		log.info("customer name patch method mapping called...!");
-		String msg = enquiryService.updateFullName(id, cname);
-
-		return new ResponseEntity<String>(msg, HttpStatus.OK);
-
-	}
-
-	@PatchMapping("/updateCustomerDOB/{id}/{dob}")
-	public ResponseEntity<String> updateCustomerName(@PathVariable("id") Integer id,
-			@PathVariable("dob") LocalDate dob) {
-
-		log.info("customer DOB patch method mapping called...!");
-		String msg = enquiryService.updateDateOfBirth(id, dob);
-
-		return new ResponseEntity<String>(msg, HttpStatus.OK);
-
-	}
-
-	@PatchMapping("/updateCustomerGender/{id}/{gender}")
-	public ResponseEntity<String> updateCustomerGender(@PathVariable("id") Integer id,
-			@PathVariable("gender") String gender) {
-
-		log.info("customer Gender patch method mapping called...!");
-		String msg = enquiryService.updateGender(id, gender);
-
-		return new ResponseEntity<String>(msg, HttpStatus.OK);
-
-	}
-
-	@PatchMapping("/updateEmail/{id}/{email}")
-	public ResponseEntity<String> updateCustomerEmail(@PathVariable("id") Integer id,
-			@PathVariable("email") String email) {
-		log.info(" Customer Email PATCH method mapping called...!");
-
-		String msg = enquiryService.updateEmail(id, email);
-
-		return new ResponseEntity<String>(msg, HttpStatus.OK);
-	}
-
-	@PatchMapping("/updateContact/{id}/{contact}")
-	public ResponseEntity<String> updateCustomerContact(@PathVariable("id") Integer id,
-			@PathVariable("contact") long con) {
-		log.info("customer contact PATCH method mapping called...!");
-
-		String msg = enquiryService.updateContact(id, con);
-
-		return new ResponseEntity<String>(msg, HttpStatus.OK);
-	}
-
-	@PatchMapping("/updateAlternateContact/{id}/{alter}")
-	public ResponseEntity<String> updateCustomerAlternate(@PathVariable("id") Integer id,
-			@PathVariable("alter") long alter) {
-		log.info(" Customer Alternate Contact PATCH method mapping called...!");
-
-		String msg = enquiryService.updateAlternate(id, alter);
-
-		return new ResponseEntity<String>(msg, HttpStatus.OK);
-	}
-
-	@PatchMapping("/updateAadhaarNo/{id}/{aadharNo}")
-	public ResponseEntity<String> updateAadhaarNo(@PathVariable("id") Integer id,
-			@PathVariable("aadharNo") long aadharNo) {
-		log.info("Customer AadharNo PATCH method mapping called...!");
-
-		String msg = enquiryService.updateAadharNo(id, aadharNo);
-
-		return new ResponseEntity<String>(msg, HttpStatus.OK);
-	}
-
-	@PatchMapping("/updatePanNo/{id}/{panNo}")
-	public ResponseEntity<String> updatePanNo(@PathVariable("id") Integer id, @PathVariable("panNo") String panNo) {
-		log.info(" Customer PanNo PATCH method mapping called...!");
-
-		String msg = enquiryService.updatePanNo(id, panNo);
-
-		return new ResponseEntity<String>(msg, HttpStatus.OK);
-	}
-
-	@GetMapping("/updateEnquiryStatus/{id}")
-	public ResponseEntity<String> updateEnquiryStatus(@PathVariable("id") Integer id) {
-		log.info(" Customer PanNo PATCH method mapping called...!");
-
-		String msg = enquiryService.setenquiryStatus(id);
-
-		return new ResponseEntity<String>(msg, HttpStatus.OK);
-	}
-
-	// DELETE MAPPING
-
-	@DeleteMapping("/deleteEnquiryField/{id}")
-	public ResponseEntity<String> deleteEnquiryField(@PathVariable("id") Integer id) {
-		log.info("Enquiry DELETE method called...!");
-		enquiryService.deleteEnquiryField(id);
-		return new ResponseEntity<String>("Delete Your Enquiry Field Successfully...!", HttpStatus.OK);
-
-	}
-
+	
+	
+	
 	// CIBIL METHODS BELOW THIS COMMENT
 
 	@GetMapping("/updateStatus/{enqid}/{cibil}")
@@ -226,4 +110,7 @@ public class EnquiryController {
 		return new ResponseEntity<String>("Cibil has been updated to" + status, HttpStatus.ACCEPTED);
 
 	}
+	
+
+	
 }
