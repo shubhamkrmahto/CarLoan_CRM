@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,7 @@ import com.app.entity.LoanApplication;
 import com.app.entity.LoanEnquiry;
 import com.app.service.ApplicationService;
 
-@CrossOrigin
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/loanApplication")
 public class ApplicationController {
@@ -28,6 +29,11 @@ public class ApplicationController {
 	
 	@Autowired
 	RestTemplate rt;
+	
+	@GetMapping("/test")
+	public String testAPIGateway() {
+		return "API Gateway Test";
+	}
 	
 	@PostMapping("/saveapplication/{id}")
 	public ResponseEntity<String> getCustomerInfo(@PathVariable("id") Integer id, 
@@ -43,7 +49,7 @@ public class ApplicationController {
 			@RequestPart("data") String data
 			){
 		
-		String url ="http://localhost:7002/enquiry/getSingleEnquiry/"+id;
+		String url ="http://localhost:7000/enquiry/getSingleEnquiry/"+id;
 		LoanEnquiry enquiry = rt.getForObject(url, LoanEnquiry.class);
 	
 		System.out.println(enquiry);
@@ -68,6 +74,7 @@ public class ApplicationController {
 		return new ResponseEntity<Double>(appService.getLoanAmount(id), HttpStatus.OK);
 	}
 	
+
 	@GetMapping("/updateStatusToDocumentVerified/{id}")
 	public ResponseEntity<String> updateStatusToDocumentVerified(@PathVariable("id") Integer id)
 	{

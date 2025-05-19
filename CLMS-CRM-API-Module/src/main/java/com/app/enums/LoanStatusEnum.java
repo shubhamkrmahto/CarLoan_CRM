@@ -1,0 +1,8 @@
+package com.app.enums;
+
+public enum LoanStatusEnum {
+
+
+	FORWARD_TO_OE,FORWARD_TO_CM,DOCUMENTS_VERIFIED,DOCUMENTS_REJECTED,SANCTION_GENERATED,
+	
+}

@@ -1,4 +1,5 @@
 package com.app.service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.app.entity.BankAccountDetails;
 import com.app.entity.Customer;
@@ -13,8 +14,6 @@ import com.app.entity.PersonalDocuments;
 
 import java.util.List;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public interface ApplicationService {
 
 
@@ -28,6 +27,7 @@ public interface ApplicationService {
 	
 	public Double getLoanAmount(Integer id);
 	
+
 	public String updateLocalAddress(LocalAddress local, Integer id);
 
 	public String updateMedicalInfoDocs(Integer id, MedicalInfo medicalInfor);

@@ -2,6 +2,7 @@ package com.app.entity;
 
 import java.time.LocalDate;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +20,7 @@ public class Customer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer customerId;
 	private String customerName;
+	@DateTimeFormat
 	private LocalDate dateOfBirth;
 	private Integer age;
 	private String gender;

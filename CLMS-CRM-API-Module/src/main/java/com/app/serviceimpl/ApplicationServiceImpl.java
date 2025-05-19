@@ -4,10 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.app.entity.BankAccountDetails;
+import com.app.entity.Cibil;
+import com.app.entity.Customer;
+import com.app.entity.CustomerVerification;
 import com.app.entity.LoanApplication;
 import com.app.entity.LoanEnquiry;
 import com.app.entity.LoanGuarantor;
@@ -17,16 +27,6 @@ import com.app.entity.PermanentAddress;
 import com.app.entity.PersonalDocuments;
 import com.app.enums.LoanApplicationStatusEnum;
 import com.app.repository.ApplicationRepository;
-import com.app.entity.BankAccountDetails;
-import com.app.entity.Cibil;
-import com.app.entity.Customer;
-import com.app.entity.CustomerVerification;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.web.multipart.MultipartFile;
-
 import com.app.service.ApplicationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -37,6 +37,7 @@ public class ApplicationServiceImpl implements ApplicationService{
 	
 	@Autowired
 	ApplicationRepository appRepo;
+
 
 	@Autowired
 	JavaMailSender sender;
@@ -136,8 +137,6 @@ public class ApplicationServiceImpl implements ApplicationService{
 		return byId.get();
 	}
 
-
-
 	@Override
 	public Double getLoanAmount(Integer id) {
 		
@@ -145,6 +144,7 @@ public class ApplicationServiceImpl implements ApplicationService{
 		
 		return la.getLoanAmount();
 	}
+
 
 	@Override
 	public String updatePermanentAddress(Integer id, PermanentAddress permanentAddress) {

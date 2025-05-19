@@ -29,6 +29,7 @@ public class LoanApplication {
 	 private Double loanAmount;
 	 
 	 @Enumerated(EnumType.STRING)
+
 	 private LoanApplicationStatusEnum loanApplicationStatus;
 	 
 	 @OneToOne(cascade = CascadeType.ALL)
