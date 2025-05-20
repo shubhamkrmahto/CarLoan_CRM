@@ -1,0 +1,166 @@
+2025-05-20T07:10:44.849+05:30  INFO 25196 --- [crm-service] [restartedMain] com.app.ClmsCrmApiModuleApplication      : Starting ClmsCrmApiModuleApplication using Java 21.0.5 with PID 25196 (C:\Users\Asus\git\CarLoan_CRM\CLMS-CRM-API-Module\target\classes started by Asus in C:\Users\Asus\git\CarLoan_CRM\CLMS-CRM-API-Module)
+2025-05-20T07:10:44.852+05:30  INFO 25196 --- [crm-service] [restartedMain] com.app.ClmsCrmApiModuleApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-05-20T07:10:44.932+05:30  INFO 25196 --- [crm-service] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-05-20T07:10:44.933+05:30  INFO 25196 --- [crm-service] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-05-20T07:10:46.528+05:30  INFO 25196 --- [crm-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-20T07:10:46.770+05:30  INFO 25196 --- [crm-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 230 ms. Found 2 JPA repository interfaces.
+2025-05-20T07:10:47.065+05:30  INFO 25196 --- [crm-service] [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=2fb67a2a-32e3-3df4-93ff-aaac57aabc69
+2025-05-20T07:10:49.054+05:30  INFO 25196 --- [crm-service] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 1111 (http)
+2025-05-20T07:10:49.077+05:30  INFO 25196 --- [crm-service] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-20T07:10:49.078+05:30  INFO 25196 --- [crm-service] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-20T07:10:49.160+05:30  INFO 25196 --- [crm-service] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-20T07:10:49.161+05:30  INFO 25196 --- [crm-service] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4227 ms
+2025-05-20T07:10:49.696+05:30  INFO 25196 --- [crm-service] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-20T07:10:49.782+05:30  INFO 25196 --- [crm-service] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.11.Final
+2025-05-20T07:10:49.836+05:30  INFO 25196 --- [crm-service] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-20T07:10:50.201+05:30  INFO 25196 --- [crm-service] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-20T07:10:50.246+05:30  INFO 25196 --- [crm-service] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-20T07:10:50.779+05:30  INFO 25196 --- [crm-service] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@59bdb8b8
+2025-05-20T07:10:50.783+05:30  INFO 25196 --- [crm-service] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-20T07:10:50.939+05:30  WARN 25196 --- [crm-service] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-05-20T07:10:50.964+05:30  INFO 25196 --- [crm-service] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.40
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-20T07:10:52.557+05:30  INFO 25196 --- [crm-service] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-20T07:10:53.022+05:30  INFO 25196 --- [crm-service] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-20T07:10:53.729+05:30  WARN 25196 --- [crm-service] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-20T07:10:54.925+05:30  WARN 25196 --- [crm-service] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2025-05-20T07:10:54.984+05:30  INFO 25196 --- [crm-service] [restartedMain] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2025-05-20T07:10:55.087+05:30  WARN 25196 --- [crm-service] [restartedMain] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-05-20T07:10:55.103+05:30  INFO 25196 --- [crm-service] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-05-20T07:10:55.231+05:30  INFO 25196 --- [crm-service] [restartedMain] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2025-05-20T07:10:55.270+05:30  INFO 25196 --- [crm-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2025-05-20T07:10:55.274+05:30  INFO 25196 --- [crm-service] [restartedMain] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-05-20T07:10:55.284+05:30  INFO 25196 --- [crm-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2025-05-20T07:10:55.285+05:30  INFO 25196 --- [crm-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2025-05-20T07:10:55.285+05:30  INFO 25196 --- [crm-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2025-05-20T07:10:55.285+05:30  INFO 25196 --- [crm-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2025-05-20T07:10:55.285+05:30  INFO 25196 --- [crm-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2025-05-20T07:10:55.285+05:30  INFO 25196 --- [crm-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2025-05-20T07:10:55.285+05:30  INFO 25196 --- [crm-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2025-05-20T07:10:55.702+05:30  INFO 25196 --- [crm-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2025-05-20T07:10:55.704+05:30  INFO 25196 --- [crm-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2025-05-20T07:10:55.706+05:30  INFO 25196 --- [crm-service] [restartedMain] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2025-05-20T07:10:55.709+05:30  INFO 25196 --- [crm-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1747705255708 with initial instances count: 2
+2025-05-20T07:10:55.722+05:30  INFO 25196 --- [crm-service] [restartedMain] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application CRM-SERVICE with eureka with status UP
+2025-05-20T07:10:55.731+05:30  INFO 25196 --- [crm-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1747705255731, current=UP, previous=STARTING]
+2025-05-20T07:10:55.735+05:30  INFO 25196 --- [crm-service] [DiscoveryClient-InstanceInfoReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_CRM-SERVICE/LAPTOP-RB5PEV1K:crm-service:1111: registering service...
+2025-05-20T07:10:55.774+05:30  INFO 25196 --- [crm-service] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 1111 (http) with context path '/'
+2025-05-20T07:10:55.776+05:30  INFO 25196 --- [crm-service] [restartedMain] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 1111
+2025-05-20T07:10:55.802+05:30  INFO 25196 --- [crm-service] [restartedMain] com.app.ClmsCrmApiModuleApplication      : Started ClmsCrmApiModuleApplication in 11.632 seconds (process running for 13.021)
+2025-05-20T07:10:55.839+05:30  INFO 25196 --- [crm-service] [DiscoveryClient-InstanceInfoReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_CRM-SERVICE/LAPTOP-RB5PEV1K:crm-service:1111 - registration status: 204
+2025-05-20T07:10:56.381+05:30  INFO 25196 --- [crm-service] [RMI TCP Connection(4)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-20T07:10:56.381+05:30  INFO 25196 --- [crm-service] [RMI TCP Connection(4)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-20T07:10:56.383+05:30  INFO 25196 --- [crm-service] [RMI TCP Connection(4)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-05-20T07:15:55.309+05:30  INFO 25196 --- [crm-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-05-20T07:20:55.332+05:30  INFO 25196 --- [crm-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-05-20T07:24:47.757+05:30  INFO 25196 --- [crm-service] [http-nio-1111-exec-6] com.app.controller.EnquiryController     : Customer GET METHOD called
+2025-05-20T07:24:47.759+05:30  INFO 25196 --- [crm-service] [http-nio-1111-exec-6] com.app.serviceimpl.EnquiryServiceImpl   :  Get all Enquirys successfully 
+2025-05-20T07:24:48.835+05:30  INFO 25196 --- [crm-service] [http-nio-1111-exec-7] com.app.controller.EnquiryController     : Customer GET METHOD called
+2025-05-20T07:24:48.835+05:30  INFO 25196 --- [crm-service] [http-nio-1111-exec-7] com.app.serviceimpl.EnquiryServiceImpl   :  Get all Enquirys successfully 
+2025-05-20T07:25:55.337+05:30  INFO 25196 --- [crm-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-05-20T07:30:55.348+05:30  INFO 25196 --- [crm-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-05-20T07:35:55.360+05:30  INFO 25196 --- [crm-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-05-20T07:40:55.377+05:30  INFO 25196 --- [crm-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-05-20T07:45:55.397+05:30  INFO 25196 --- [crm-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-05-20T07:50:55.428+05:30  INFO 25196 --- [crm-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-05-20T07:55:55.446+05:30  INFO 25196 --- [crm-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-05-20T08:00:55.463+05:30  INFO 25196 --- [crm-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-05-20T08:05:55.479+05:30  INFO 25196 --- [crm-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-05-20T08:10:55.493+05:30  INFO 25196 --- [crm-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-05-20T08:15:55.504+05:30  INFO 25196 --- [crm-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-05-20T08:20:55.514+05:30  INFO 25196 --- [crm-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-05-20T08:25:55.535+05:30  INFO 25196 --- [crm-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-05-20T08:26:42.870+05:30  INFO 25196 --- [crm-service] [RMI TCP Connection(83)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2025-05-20T08:26:42.875+05:30  INFO 25196 --- [crm-service] [RMI TCP Connection(83)-127.0.0.1] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application CRM-SERVICE with eureka with status DOWN
+2025-05-20T08:26:42.876+05:30  INFO 25196 --- [crm-service] [RMI TCP Connection(83)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1747709802876, current=DOWN, previous=UP]
+2025-05-20T08:26:42.876+05:30  INFO 25196 --- [crm-service] [DiscoveryClient-InstanceInfoReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_CRM-SERVICE/LAPTOP-RB5PEV1K:crm-service:1111: registering service...
+2025-05-20T08:26:42.891+05:30  INFO 25196 --- [crm-service] [RMI TCP Connection(83)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-20T08:26:42.904+05:30  INFO 25196 --- [crm-service] [DiscoveryClient-InstanceInfoReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_CRM-SERVICE/LAPTOP-RB5PEV1K:crm-service:1111 - registration status: 204
+2025-05-20T08:26:42.911+05:30  INFO 25196 --- [crm-service] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-20T08:26:42.932+05:30  INFO 25196 --- [crm-service] [RMI TCP Connection(83)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-20T08:26:42.944+05:30  INFO 25196 --- [crm-service] [RMI TCP Connection(83)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-20T08:26:42.959+05:30  INFO 25196 --- [crm-service] [RMI TCP Connection(83)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-20T08:26:42.960+05:30  INFO 25196 --- [crm-service] [RMI TCP Connection(83)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2025-05-20T08:26:45.980+05:30  INFO 25196 --- [crm-service] [RMI TCP Connection(83)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2025-05-20T08:26:45.991+05:30  INFO 25196 --- [crm-service] [RMI TCP Connection(83)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_CRM-SERVICE/LAPTOP-RB5PEV1K:crm-service:1111 - deregister  status: 200
+2025-05-20T08:26:45.992+05:30  INFO 25196 --- [crm-service] [RMI TCP Connection(83)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+2025-05-20T11:38:51.522+05:30  INFO 13980 --- [crm-service] [restartedMain] com.app.ClmsCrmApiModuleApplication      : Starting ClmsCrmApiModuleApplication using Java 21.0.5 with PID 13980 (C:\Users\Asus\git\CarLoan_CRM\CLMS-CRM-API-Module\target\classes started by Asus in C:\Users\Asus\git\CarLoan_CRM\CLMS-CRM-API-Module)
+2025-05-20T11:38:51.525+05:30  INFO 13980 --- [crm-service] [restartedMain] com.app.ClmsCrmApiModuleApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-05-20T11:38:51.602+05:30  INFO 13980 --- [crm-service] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-05-20T11:38:51.603+05:30  INFO 13980 --- [crm-service] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-05-20T11:38:52.993+05:30  INFO 13980 --- [crm-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-20T11:38:53.158+05:30  INFO 13980 --- [crm-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 153 ms. Found 2 JPA repository interfaces.
+2025-05-20T11:38:53.436+05:30  INFO 13980 --- [crm-service] [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=2fb67a2a-32e3-3df4-93ff-aaac57aabc69
+2025-05-20T11:38:54.257+05:30  INFO 13980 --- [crm-service] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 1111 (http)
+2025-05-20T11:38:54.272+05:30  INFO 13980 --- [crm-service] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-20T11:38:54.273+05:30  INFO 13980 --- [crm-service] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-20T11:38:54.337+05:30  INFO 13980 --- [crm-service] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-20T11:38:54.338+05:30  INFO 13980 --- [crm-service] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2734 ms
+2025-05-20T11:38:54.764+05:30  INFO 13980 --- [crm-service] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-20T11:38:54.828+05:30  INFO 13980 --- [crm-service] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.11.Final
+2025-05-20T11:38:54.872+05:30  INFO 13980 --- [crm-service] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-20T11:38:55.194+05:30  INFO 13980 --- [crm-service] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-20T11:38:55.228+05:30  INFO 13980 --- [crm-service] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-20T11:38:55.600+05:30  INFO 13980 --- [crm-service] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@27104cce
+2025-05-20T11:38:55.602+05:30  INFO 13980 --- [crm-service] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-20T11:38:55.661+05:30  WARN 13980 --- [crm-service] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-05-20T11:38:55.681+05:30  INFO 13980 --- [crm-service] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.40
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-20T11:38:57.122+05:30  INFO 13980 --- [crm-service] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-20T11:38:57.356+05:30  INFO 13980 --- [crm-service] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-20T11:38:57.979+05:30  WARN 13980 --- [crm-service] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-20T11:38:59.066+05:30  WARN 13980 --- [crm-service] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2025-05-20T11:38:59.114+05:30  INFO 13980 --- [crm-service] [restartedMain] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2025-05-20T11:38:59.196+05:30  WARN 13980 --- [crm-service] [restartedMain] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-05-20T11:38:59.208+05:30  INFO 13980 --- [crm-service] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-05-20T11:38:59.324+05:30  INFO 13980 --- [crm-service] [restartedMain] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2025-05-20T11:38:59.353+05:30  INFO 13980 --- [crm-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2025-05-20T11:38:59.358+05:30  INFO 13980 --- [crm-service] [restartedMain] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-05-20T11:38:59.369+05:30  INFO 13980 --- [crm-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2025-05-20T11:38:59.369+05:30  INFO 13980 --- [crm-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2025-05-20T11:38:59.369+05:30  INFO 13980 --- [crm-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2025-05-20T11:38:59.370+05:30  INFO 13980 --- [crm-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2025-05-20T11:38:59.370+05:30  INFO 13980 --- [crm-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2025-05-20T11:38:59.370+05:30  INFO 13980 --- [crm-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2025-05-20T11:38:59.370+05:30  INFO 13980 --- [crm-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2025-05-20T11:38:59.770+05:30  INFO 13980 --- [crm-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2025-05-20T11:38:59.772+05:30  INFO 13980 --- [crm-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2025-05-20T11:38:59.774+05:30  INFO 13980 --- [crm-service] [restartedMain] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2025-05-20T11:38:59.776+05:30  INFO 13980 --- [crm-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1747721339775 with initial instances count: 1
+2025-05-20T11:38:59.785+05:30  INFO 13980 --- [crm-service] [restartedMain] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application CRM-SERVICE with eureka with status UP
+2025-05-20T11:38:59.786+05:30  INFO 13980 --- [crm-service] [restartedMain] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1747721339786, current=UP, previous=STARTING]
+2025-05-20T11:38:59.789+05:30  INFO 13980 --- [crm-service] [DiscoveryClient-InstanceInfoReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_CRM-SERVICE/LAPTOP-RB5PEV1K:crm-service:1111: registering service...
+2025-05-20T11:38:59.819+05:30  INFO 13980 --- [crm-service] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 1111 (http) with context path '/'
+2025-05-20T11:38:59.821+05:30  INFO 13980 --- [crm-service] [restartedMain] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 1111
+2025-05-20T11:38:59.851+05:30  INFO 13980 --- [crm-service] [restartedMain] com.app.ClmsCrmApiModuleApplication      : Started ClmsCrmApiModuleApplication in 8.944 seconds (process running for 10.092)
+2025-05-20T11:38:59.855+05:30  INFO 13980 --- [crm-service] [DiscoveryClient-InstanceInfoReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_CRM-SERVICE/LAPTOP-RB5PEV1K:crm-service:1111 - registration status: 204
+2025-05-20T11:39:00.325+05:30  INFO 13980 --- [crm-service] [RMI TCP Connection(4)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-20T11:39:00.325+05:30  INFO 13980 --- [crm-service] [RMI TCP Connection(4)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-20T11:39:00.327+05:30  INFO 13980 --- [crm-service] [RMI TCP Connection(4)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-20T11:43:59.388+05:30  INFO 13980 --- [crm-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-05-20T11:44:52.201+05:30  INFO 13980 --- [crm-service] [RMI TCP Connection(11)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2025-05-20T11:44:52.244+05:30  INFO 13980 --- [crm-service] [RMI TCP Connection(11)-127.0.0.1] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application CRM-SERVICE with eureka with status DOWN
+2025-05-20T11:44:52.245+05:30  INFO 13980 --- [crm-service] [RMI TCP Connection(11)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1747721692245, current=DOWN, previous=UP]
+2025-05-20T11:44:52.245+05:30  INFO 13980 --- [crm-service] [DiscoveryClient-InstanceInfoReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_CRM-SERVICE/LAPTOP-RB5PEV1K:crm-service:1111: registering service...
+2025-05-20T11:44:52.274+05:30  INFO 13980 --- [crm-service] [DiscoveryClient-InstanceInfoReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_CRM-SERVICE/LAPTOP-RB5PEV1K:crm-service:1111 - registration status: 204
+2025-05-20T11:44:52.284+05:30  INFO 13980 --- [crm-service] [RMI TCP Connection(11)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-20T11:44:52.309+05:30  INFO 13980 --- [crm-service] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-20T11:44:52.336+05:30  INFO 13980 --- [crm-service] [RMI TCP Connection(11)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-20T11:44:52.361+05:30  INFO 13980 --- [crm-service] [RMI TCP Connection(11)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-20T11:44:52.401+05:30  INFO 13980 --- [crm-service] [RMI TCP Connection(11)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-20T11:44:52.403+05:30  INFO 13980 --- [crm-service] [RMI TCP Connection(11)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2025-05-20T11:44:55.412+05:30  INFO 13980 --- [crm-service] [RMI TCP Connection(11)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2025-05-20T11:44:55.446+05:30  INFO 13980 --- [crm-service] [RMI TCP Connection(11)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_CRM-SERVICE/LAPTOP-RB5PEV1K:crm-service:1111 - deregister  status: 200
+2025-05-20T11:44:55.447+05:30  INFO 13980 --- [crm-service] [RMI TCP Connection(11)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
