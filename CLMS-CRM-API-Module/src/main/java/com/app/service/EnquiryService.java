@@ -1,11 +1,10 @@
 package com.app.service;
 
-import java.time.LocalDate;
 import java.util.List;
 
-import com.app.entity.LoanApplication;
 import com.app.entity.LoanEnquiry;
 import com.app.enums.EnquiryStatusEnum;
+import com.app.exception.EnquiryNotFoundException;
 
 public interface EnquiryService {
 
@@ -15,7 +14,7 @@ public interface EnquiryService {
 	
 	public List<LoanEnquiry> getAllEnquiry();
 
-	public LoanEnquiry getSingleEnquiry(Integer enquiryId);
+	public LoanEnquiry getSingleEnquiry(Integer enquiryId) throws EnquiryNotFoundException;
 
 	public String setenquiryStatus(Integer id);
 
@@ -23,26 +22,7 @@ public interface EnquiryService {
 	
 	public List<LoanEnquiry> getApprovedEnquiry();
 	
-	public EnquiryStatusEnum updateCibilScore(Integer enqId,Integer cs);
+	public EnquiryStatusEnum updateCibilScore(Integer enqId,Integer cs) throws EnquiryNotFoundException;
 	
-//	public void deleteEnquiryField(Integer id);
-//	
-//	public String updateFullName(Integer id, String cname);
-//	
-//	public String updateDateOfBirth(Integer id, LocalDate dob);
-//
-//	public String updateGender(Integer id, String gender);
-//	
-//	public String updateEmail(Integer id, String email);
-//	
-//	public String updateContact(Integer id, Long contact);
-//
-//	public String updateAlternate(Integer id, Long alternate);
-//
-//	public String updateAadharNo(Integer id, Long aadharNo);
-//	
-//	public String updatePanNo(Integer id, String panNo);
-//	
-//	public String updateEnquiry(Integer enquiryId , LoanEnquiry loanEnquiry);
-	
+
 }

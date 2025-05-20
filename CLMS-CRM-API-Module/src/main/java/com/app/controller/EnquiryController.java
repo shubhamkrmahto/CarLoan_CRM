@@ -16,12 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-
 import com.app.entity.LoanEnquiry;
 import com.app.enums.EnquiryStatusEnum;
+import com.app.exception.EnquiryNotFoundException;
 import com.app.service.EnquiryService;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping("/enquiry")
 public class EnquiryController {
@@ -81,7 +80,7 @@ public class EnquiryController {
 	// GET MAPPING
 
 	@GetMapping("/getSingleEnquiry/{enquiryId}")
-	public ResponseEntity<LoanEnquiry> getSingleEnquiry(@PathVariable("enquiryId") Integer enquiryId) {
+	public ResponseEntity<LoanEnquiry> getSingleEnquiry(@PathVariable("enquiryId") Integer enquiryId) throws EnquiryNotFoundException {
 		log.info("Customer GETSINGLE METHOD called");
 
 		LoanEnquiry loanEnquiry = enquiryService.getSingleEnquiry(enquiryId);
@@ -103,7 +102,7 @@ public class EnquiryController {
 
 	@GetMapping("/updateStatus/{enqid}/{cibil}")
 	public ResponseEntity<String> updateStatus(@PathVariable("enqid") Integer eid,
-			@PathVariable("cibil") Integer cibil) {
+			@PathVariable("cibil") Integer cibil) throws EnquiryNotFoundException {
 
 		EnquiryStatusEnum status = enquiryService.updateCibilScore(eid, cibil);
 
