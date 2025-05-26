@@ -14,6 +14,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.app.dto.SanctionDetailDTO;
 import com.app.entity.BankAccountDetails;
 import com.app.entity.Cibil;
 import com.app.entity.Customer;
@@ -27,6 +28,7 @@ import com.app.entity.PermanentAddress;
 import com.app.entity.PersonalDocuments;
 import com.app.enums.LoanApplicationStatusEnum;
 import com.app.repository.ApplicationRepository;
+import com.app.repository.CustomerRepository;
 import com.app.service.ApplicationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -37,6 +39,10 @@ public class ApplicationServiceImpl implements ApplicationService{
 	
 	@Autowired
 	ApplicationRepository appRepo;
+	
+	
+	@Autowired
+	CustomerRepository customerRepo;
 
 
 	@Autowired
@@ -49,46 +55,29 @@ public class ApplicationServiceImpl implements ApplicationService{
 
 	
 	@Override
-	public String saveLoanApplication(LoanEnquiry loanEnquiry,MultipartFile addressProof, MultipartFile panCard, MultipartFile incomeTax,
+	public String saveLoanApplication(Integer id, Customer customer,MultipartFile addressProof, MultipartFile panCard, MultipartFile incomeTax,
 			MultipartFile aadharCard, MultipartFile photo,MultipartFile signature,MultipartFile bankCheque, MultipartFile salarySlips,String data){
 				
 
-		try {		
+		try {
 			
 			ObjectMapper mapper = new ObjectMapper();
 			mapper.registerModule(new JavaTimeModule());
 			
 			LoanApplication value = mapper.readValue(data, LoanApplication.class);
 			
+			Optional<Customer> existingCustomer = customerRepo.findByCustomerId(id);
+			
+			if (existingCustomer.isPresent()) {
+			    value.setCustomer(existingCustomer.get());
+			} else {
+			    // Customer not found — return error or handle accordingly
+			    log.error("Customer with ID " + id + " not found.");
+			    return "Customer not found. Please register the customer before applying for loan.";
+			}
+			
 			log.info("LoanApplication Json Data : "+data);
 			System.out.println(value);
-			
-			
-			Customer cc = new Customer();
-			
-			cc.setCustomerName(loanEnquiry.getCustomerName());//loan
-			cc.setDateOfBirth(loanEnquiry.getDateOfBirth());//loan
-			cc.setAge(value.getCustomer().getAge());
-			cc.setGender(loanEnquiry.getGender());//loan
-			cc.setState(value.getCustomer().getState());
-			cc.setCustomerContactNumber(loanEnquiry.getCustomerContactNumber());//loan
-			cc.setCustomerAlternateNumber(loanEnquiry.getCustomerAlternateNumber());//loan
-			cc.setCustomerEmailId(loanEnquiry.getCustomerEmailId());//loan
-			cc.setCustomerPermanentAddress(value.getCustomer().getCustomerPermanentAddress());
-			cc.setCustomerCity(value.getCustomer().getCustomerCity());
-			cc.setCustomerPincode(value.getCustomer().getCustomerPincode());
-			cc.setAadharNo(loanEnquiry.getAadharNo());//loan
-			cc.setPanCardNo(loanEnquiry.getPanCardNo());//loan
-			
-			
-			value.setCustomer(cc);
-			
-			
-			Cibil cb = new Cibil();
-			cb.setCibilScore(loanEnquiry.getCibil().getCibilScore());
-			cb.setCibilStatus(loanEnquiry.getCibil().getCibilStatus());
-			
-			value.setCibil(cb);
 			
 			PersonalDocuments docs = new PersonalDocuments();
 			
@@ -107,7 +96,7 @@ public class ApplicationServiceImpl implements ApplicationService{
 			
 			SimpleMailMessage mail = new SimpleMailMessage();
 			mail.setFrom(from);
-			mail.setTo(loanEnquiry.getCustomerEmailId());
+			mail.setTo(customer.getCustomerEmailId());
 			mail.setSubject("Loan Application");
 	        mail.setText("Dear Customer, Your Car loan Application has been submitted successfully.\n"+value.getCustomer().getCustomerName());
 			System.out.println(value);
@@ -388,18 +377,40 @@ public class ApplicationServiceImpl implements ApplicationService{
 
 
 	@Override
-	public List<Integer> getLoanApplicationsID() {
+	public List<LoanApplication> getAllLoanApplications() {
 		// TODO Auto-generated method stub
-		List<LoanApplication> applications = appRepo.findAll();
 		
-		List<Integer> applied = new ArrayList<>();
 		
-		for(LoanApplication l : applications) {
-			applied.add(l.getApplicationId());		
-			}
-		
-		return applied;
+		return appRepo.findAll();
 	}
+
+
+
+	@Override
+	public SanctionDetailDTO getSanctionById(Integer id) {
+		// TODO Auto-generated method stub
+		
+		Optional<LoanApplication> byId = appRepo.findById(id);
+		
+		if(byId.isPresent()) {
+			
+			LoanApplication loanApplication = byId.get();
+			
+			SanctionDetailDTO loanApplicationToSend = new SanctionDetailDTO();
+			
+			loanApplicationToSend.setLoanAmount(loanApplication.getLoanAmount());
+			loanApplicationToSend.getCustomer().setCustomerName(loanApplication.getCustomer().getCustomerName());
+			loanApplicationToSend.getCustomer().setCustomerEmailId(loanApplication.getCustomer().getCustomerEmailId());
+			loanApplicationToSend.getCustomer().setCustomerContactNumber(loanApplication.getCustomer().getCustomerContactNumber());
+			loanApplicationToSend.getCustomer().getLe().getCibil().setCibilScore(loanApplication.getCustomer().getLe().getCibil().getCibilScore());
+			
+			return loanApplicationToSend;
+		}
+		
+		return null;
+	}
+	
+	
 	
 	
 	//DependentInfo Patch mapping

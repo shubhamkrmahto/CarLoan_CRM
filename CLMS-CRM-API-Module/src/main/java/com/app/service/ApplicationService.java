@@ -1,6 +1,7 @@
 package com.app.service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.app.dto.SanctionDetailDTO;
 import com.app.entity.BankAccountDetails;
 import com.app.entity.Customer;
 import com.app.entity.CustomerVerification;
@@ -11,22 +12,24 @@ import com.app.entity.LocalAddress;
 import com.app.entity.MedicalInfo;
 import com.app.entity.PermanentAddress;
 import com.app.entity.PersonalDocuments;
+import com.app.entity.SanctionLetter;
 
 import java.util.List;
 
 public interface ApplicationService {
 
 
-	public String saveLoanApplication(LoanEnquiry loanenquiry, MultipartFile addressProof, MultipartFile panCard, MultipartFile incomeTax,
+	public String saveLoanApplication(Integer id, Customer customer, MultipartFile addressProof, MultipartFile panCard, MultipartFile incomeTax,
 			MultipartFile aadharCard, MultipartFile photo,MultipartFile signature,
 			MultipartFile bankCheque, MultipartFile salarySlips,String data);
 	
 	public LoanApplication getById(Integer id);
 	
-	public List<Integer> getLoanApplicationsID();
+	public List<LoanApplication> getAllLoanApplications();
 	
 	public Double getLoanAmount(Integer id);
 	
+	public SanctionDetailDTO getSanctionById(Integer id);
 
 	public String updateLocalAddress(LocalAddress local, Integer id);
 

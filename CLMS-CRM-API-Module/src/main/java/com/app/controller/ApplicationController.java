@@ -14,11 +14,14 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.app.dto.SanctionDetailDTO;
+import com.app.entity.Customer;
 import com.app.entity.LoanApplication;
 import com.app.entity.LoanEnquiry;
+import com.app.entity.SanctionLetter;
 import com.app.service.ApplicationService;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping("/loanApplication")
 public class ApplicationController {
@@ -49,12 +52,12 @@ public class ApplicationController {
 			@RequestPart("data") String data
 			){
 		
-		String url ="http://localhost:9090/crm/enquiry/getSingleEnquiry/"+id;
-		LoanEnquiry enquiry = rt.getForObject(url, LoanEnquiry.class);
+		String url ="http://localhost:9090/customer/customer/getcustomerbyenquiryid/"+id;
+		Customer customer = rt.getForObject(url, Customer.class);
 	
-		System.out.println(enquiry);
+		System.out.println(customer);
 		
-			String msg = appService.saveLoanApplication(enquiry,addressProof,panCard,incomeTax,aadharCard,
+			String msg = appService.saveLoanApplication(id,customer,addressProof,panCard,incomeTax,aadharCard,
 					                        photo,signature,bankCheque,salarySlips,data);
 			
 			return new ResponseEntity<String>(msg , HttpStatus.OK);
@@ -65,6 +68,16 @@ public class ApplicationController {
 	{
 		
 		return new ResponseEntity<LoanApplication>(appService.getById(id), HttpStatus.OK);
+	}
+	
+	@GetMapping("/getSanctionDetailById/{id}")
+	public ResponseEntity<SanctionDetailDTO> getSanctionById(@PathVariable("id") Integer id)
+	{
+		
+		SanctionDetailDTO byId = appService.getSanctionById(id);
+		System.out.println(byId);
+		
+		return new ResponseEntity<SanctionDetailDTO>(byId, HttpStatus.OK);
 	}
 	
 	@GetMapping("/getLoanamount/{id}")
@@ -96,11 +109,11 @@ public class ApplicationController {
 		return new ResponseEntity<List<LoanApplication>>(appService.getLoanStatusToForwardToOE(), HttpStatus.OK);
 	}
 	
-	@GetMapping("/getAllApplicationID")
-	public ResponseEntity<List<Integer>> getAllApplicationID()
+	@GetMapping("/getAllApplications")
+	public ResponseEntity<List<LoanApplication>> getAllApplication()
 	{
 		
-		return new ResponseEntity<List<Integer>>(appService.getLoanApplicationsID(), HttpStatus.OK);
+		return new ResponseEntity<List<LoanApplication>>(appService.getAllLoanApplications(), HttpStatus.OK);
 	}
 	
 }

@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.OneToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -22,13 +23,14 @@ public class SanctionLetter {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer sanctionLetterId;
+	private Integer customerId;
 	private LocalDate sanctionDate;
 	private String applicantName;
 	private Long contactDetails;
 	private String applicantEmail;
 	private Double loanAmtountSanctioned;
 	private String interestType;
-	private Double rateOfInterest;
+	private Integer rateOfInterest;
 	private Integer loanTenureInMonth;
 	private Double monthlyEMIAmount;
 	private Double loanAmount;
@@ -42,5 +44,7 @@ public class SanctionLetter {
 	@Lob
 	@Column(length = 9000000)
 	private byte[] sanctionLetter;
+	
+	
 
 }

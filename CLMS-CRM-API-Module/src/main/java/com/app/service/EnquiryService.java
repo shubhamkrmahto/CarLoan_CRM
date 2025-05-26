@@ -11,7 +11,7 @@ public interface EnquiryService {
 
 	
 	
-	public String saveEnquiry(LoanEnquiry enquiry);
+	public String saveEnquiry(Integer eid,LoanEnquiry enquiry);
 	
 	public List<LoanEnquiry> getAllEnquiry();
 

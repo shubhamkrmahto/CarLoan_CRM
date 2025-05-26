@@ -23,13 +23,12 @@ public class LoanApplication {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	 private Integer applicationId;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	 @OneToOne
 	 private Customer customer;
 	
 	 private Double loanAmount;
 	 
 	 @Enumerated(EnumType.STRING)
-
 	 private LoanApplicationStatusEnum loanApplicationStatus;
 	 
 	 @OneToOne(cascade = CascadeType.ALL)
@@ -45,9 +44,6 @@ public class LoanApplication {
 	 private MedicalInfo medicalInfo;
 	 
 	 @OneToOne(cascade = CascadeType.ALL)
-	 private Cibil cibil;
-	 
-	 @OneToOne(cascade = CascadeType.ALL)
 	 private CurrentLoanDetails currentLoanDetails;
 	 
 	 @OneToOne(cascade = CascadeType.ALL)
@@ -61,9 +57,6 @@ public class LoanApplication {
 	 
 	 @OneToOne(cascade = CascadeType.ALL)
 	 private LoanDisbursement loanDisbursement;
-	 
-	 @OneToOne(cascade = CascadeType.ALL)
-	 private Ledger ledger;
 	 
 	 @OneToOne(cascade = CascadeType.ALL)
 	 private SanctionLetter sanctionLetter;
