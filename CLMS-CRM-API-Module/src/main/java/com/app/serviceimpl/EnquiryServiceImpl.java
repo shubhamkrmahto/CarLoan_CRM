@@ -39,25 +39,37 @@ public class EnquiryServiceImpl implements EnquiryService{
 	
 
 	@Override
-	public String saveEnquiry(LoanEnquiry enquiry) {
+	public String saveEnquiry(Integer eid,LoanEnquiry enquiry) {
 		
-		enquiry.setEnquiryStatus(EnquiryStatusEnum.PENDING);
-		enquiry.getCibil().setCibilScore(0);
-		enquiry.getCibil().setCibilStatus(CibilStatusEnum.PENDING);
+		LoanEnquiry loanenquiry = getSingleEnquiry(eid);
 		
-		enquiryRepository.save(enquiry);
+		loanenquiry.setCustomerName(enquiry.getCustomerName());
+		loanenquiry.setAadharNo(enquiry.getAadharNo());
+		loanenquiry.setCustomerAlternateNumber(enquiry.getCustomerAlternateNumber());
+		loanenquiry.setCustomerContactNumber(enquiry.getCustomerContactNumber());
+		loanenquiry.setCustomerEmailId(enquiry.getCustomerEmailId());
+		loanenquiry.setCustomerName(enquiry.getCustomerName());
+		loanenquiry.setDateOfBirth(enquiry.getDateOfBirth());
+		loanenquiry.setEnquiryDateTime(enquiry.getEnquiryDateTime());
+		loanenquiry.setEnquiryStatus(EnquiryStatusEnum.PENDING);
+		loanenquiry.getCibil().setCibilScore(0);
+		loanenquiry.getCibil().setCibilStatus(CibilStatusEnum.PENDING);
+		loanenquiry.setGender(enquiry.getGender());
+		loanenquiry.setPanCardNo(enquiry.getPanCardNo());
+		
+		enquiryRepository.save(loanenquiry);
 		
 		log.info("Enquiry has been saved successfully and Enquiry id is : " + enquiry.getEnquiryId());
 		
 		SimpleMailMessage mail= new SimpleMailMessage();
 		mail.setFrom(from);
-		mail.setTo(enquiry.getCustomerEmailId());
+		mail.setTo(loanenquiry.getCustomerEmailId());
 		mail.setSubject("Regarding Loan Enquiry");
 		mail.setText("Your Loan enquiry request has been Registed.Our Customer executive will reach you out soon. Stay connected ");
 		
 		mailSender.send(mail);
 		
-		log.info("Mail has been sent to registered Email id : " + enquiry.getCustomerEmailId());
+		log.info("Mail has been sent to registered Email id : " + loanenquiry.getCustomerEmailId());
 		return "Enquiry registered";
 				
 	}

@@ -21,7 +21,6 @@ import com.app.entity.LoanEnquiry;
 import com.app.enums.EnquiryStatusEnum;
 import com.app.service.EnquiryService;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping("/enquiry")
 public class EnquiryController {
@@ -41,21 +40,21 @@ public class EnquiryController {
 		return "API GateWay Testing";
 	}
 
-	@PostMapping("/saveEnquiry")
-	public ResponseEntity<String> saveEnquiry(@RequestBody LoanEnquiry enquiry) {
+	@PatchMapping("/saveEnquiry/{eid}")
+	public ResponseEntity<String> saveEnquiry(@PathVariable("eid") Integer eid, @RequestBody LoanEnquiry enquiry) {
 
 		log.info("Enquiry Controller post mapping called...!");
 		System.out.println(enquiry);
 
-		String msg = enquiryService.saveEnquiry(enquiry);
+		String msg = enquiryService.saveEnquiry(eid,enquiry);
 
 		return new ResponseEntity<String>(msg, HttpStatus.OK);
 	}
 
 	// method to change enquiry status from crm
 
-	@PatchMapping("/enquirystatus/{id}")
-	public ResponseEntity<String> sendEnquiryStatusToOE(@PathVariable Integer id) {
+	@PatchMapping("/updateEnquiryStatus/{id}")
+	public ResponseEntity<String> updateEnquiryStatusToOE(@PathVariable Integer id) {
 
 		String status = enquiryService.setenquiryStatus(id);
 		return new ResponseEntity<String>(status, HttpStatus.OK);

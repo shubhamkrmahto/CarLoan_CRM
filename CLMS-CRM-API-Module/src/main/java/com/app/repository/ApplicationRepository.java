@@ -9,7 +9,7 @@ import com.app.enums.LoanApplicationStatusEnum;
 
 public interface ApplicationRepository extends JpaRepository<LoanApplication, Integer> {
 
-	public List<LoanApplication> findAllByLoanApplicationStatus(LoanApplicationStatusEnum loanStatus); 
+	public List<LoanApplication> findAllByLoanApplicationStatus(LoanApplicationStatusEnum loanStatus);
 	
 	
 }
